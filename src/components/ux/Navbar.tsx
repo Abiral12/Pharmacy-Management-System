@@ -19,7 +19,7 @@ const PharmacyNavbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-lg py-2' : 'bg-gradient-to-r from-blue-50 to-white py-4'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/50 backdrop-blur-lg shadow-lg py-2' : 'bg-transparent py-4'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -41,8 +41,8 @@ const PharmacyNavbar = () => {
                   />
                 </svg>
               </div>
-              <span className={`ml-3 text-xl font-bold ${scrolled ? 'text-blue-600' : 'text-white'}`}>
-                Pharma<span className="text-blue-400">Soft</span>
+              <span className={`ml-3 text-xl font-bold ${scrolled ? 'text-blue-600' : 'text-gray-700'}`}>
+                Pharma<span className="text-blue-400">City</span>
               </span>
             </Link>
           </div>
@@ -52,31 +52,31 @@ const PharmacyNavbar = () => {
             <div className="ml-10 flex items-center space-x-8">
               <Link
                 href="/features"
-                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-black hover:bg-blue-600/20'}`}
               >
                 Features
               </Link>
               <Link
                 href="/pricing"
-                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-black hover:bg-blue-600/20'}`}
               >
                 Pricing
               </Link>
               <Link
                 href="/demo"
-                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-black hover:bg-blue-600/20'}`}
               >
                 Live Demo
               </Link>
               <Link
                 href="/support"
-                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-black hover:bg-blue-600/20'}`}
               >
                 Support
               </Link>
               <Link
                 href="/blog"
-                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-black hover:bg-blue-600/20'}`}
               >
                 Blog
               </Link>
@@ -116,7 +116,7 @@ const PharmacyNavbar = () => {
             >
               <span className="sr-only">Open main menu</span>
               <svg
-                className={`h-6 w-6 ${scrolled ? 'text-gray-700' : 'text-white'}`}
+                className={`h-6 w-6 ${scrolled ? 'text-gray-700' : 'text-black'}`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
