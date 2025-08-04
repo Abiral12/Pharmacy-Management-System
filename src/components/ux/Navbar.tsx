@@ -41,8 +41,8 @@ const PharmacyNavbar = () => {
                   />
                 </svg>
               </div>
-              <span className={`ml-3 text-xl font-bold ${scrolled ? 'text-blue-600' : 'text-gray-700'}`}>
-                Pharma<span className="text-blue-400">City</span>
+              <span className={`ml-3 text-xl font-bold ${scrolled ? 'text-blue-600':'text-white'}`}>
+                Pharma<span className={`${scrolled ? 'text-black':'text-cyan-500'}`}>City</span>
               </span>
             </Link>
           </div>
@@ -52,31 +52,31 @@ const PharmacyNavbar = () => {
             <div className="ml-10 flex items-center space-x-8">
               <Link
                 href="/features"
-                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-black hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font- hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
               >
                 Features
               </Link>
               <Link
                 href="/pricing"
-                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-black hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
               >
                 Pricing
               </Link>
               <Link
                 href="/demo"
-                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-black hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
               >
                 Live Demo
               </Link>
               <Link
                 href="/support"
-                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-black hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
               >
                 Support
               </Link>
               <Link
                 href="/blog"
-                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-black hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
               >
                 Blog
               </Link>
@@ -137,7 +137,7 @@ const PharmacyNavbar = () => {
 
       {/* Mobile menu */}
       <div className={`md:hidden ${mobileMenuOpen ? 'block' : 'hidden'}`}>
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg rounded-b-lg">
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/50 backdrop-blur-lg shadow-lg py-2' : 'bg-transparent py-4'">
           <Link
             href="/features"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"

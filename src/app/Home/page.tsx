@@ -43,54 +43,67 @@ export default function HomePage() {
       <PharmacyNavbar />
       <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
         {/* Premium Enterprise Hero Section */}
-        <section className="relative py-24 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
-              {/* Image Column - Now on Left */}
-              <div className="w-full lg:w-1/2 order-1 lg:order-1">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-100 bg-gradient-to-br from-gray-50 to-white">
-                  <img
-                    src="/images/pharmacy-dashboard-pro.jpg"
-                    alt="Professional Pharmacy Management Dashboard Interface showing inventory, prescriptions, and analytics"
-                    className="w-full h-auto"
-                    loading="eager"
-                  />
-                </div>
-              </div>
 
-              {/* Content Column - Now on Right */}
-              <div className="w-full lg:w-1/2 space-y-8 order-2 lg:order-2">
-                {/* Enhanced Headline */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                  The Complete{" "}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
-                    Pharmacy Management
-                  </span>{" "}
-                  Software
-                </h1>
 
-                {/* Professional Subhead */}
-                <p className="text-xl text-gray-600 leading-relaxed font-light">
-                Our Pharmacy Management System is a complete digital solution designed to simplify, automate, and streamline every aspect of pharmacy operations.
-                 From fast and accurate prescription processing to real-time inventory tracking, billing, supplier coordination, and patient record management — everything is built into one easy-to-use platform.
-                  With secure cloud access, intuitive navigation, and compliance-ready features, we help pharmacies improve efficiency, reduce errors, and deliver exceptional customer care anytime, anywhere.
-                </p>
+<section className="relative h-screen bg-white">
+  {/* Full-width, full-height background image with overlay */}
+  <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+    <img
+      src="/images/pharmacy-dashboard-pro.jpg"
+      alt="Professional Pharmacy Management Dashboard Interface"
+      className="w-full h-full object-cover object-center"
+      loading="eager"
+    />
+    {/* Darker overlay for better text contrast */}
+    <div className="absolute inset-0 bg-black/30"></div>
+  </div>
 
-                {/* Enhanced CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center">
-                    Get Started
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </button>
-                  <button className="px-8 py-4 border-2 border-gray-200 hover:border-blue-300 text-gray-700 hover:text-blue-700 font-semibold rounded-xl transition-all duration-200 bg-white hover:bg-blue-50 flex items-center justify-center">
-                    <PlayCircle className="h-5 w-5 mr-2 text-blue-600" />
-                    Live Demo
-                  </button>
-                </div>
-              </div>
-            </div>
+  {/* Content container centered vertically and horizontally */}
+  <div className="relative z-10 h-full flex items-center">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
+        {/* Content Column - takes full width unless you want side-by-side layout */}
+        <div className="w-full space-y-8 text-white">
+          {/* Enhanced Headline */}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-cyan-700">
+              Pharmacy Management
+            </span>{" "}
+            <span className="text-white">Software</span>
+          </h1>
+
+          {/* Professional Subhead */}
+          <p className="text-xl text-gray-200 leading-relaxed font-light max-w-2xl">
+            Our Pharmacy Management System simplifies prescriptions, inventory, billing, and records in one secure, cloud-based platform—boosting efficiency and care.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center">
+              Get Started
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </button>
+            <button className="px-8 py-4 border-2 border-gray-200 hover:border-blue-300 text-white hover:text-blue-300 font-semibold rounded-xl transition-all duration-200 bg-white/10 hover:bg-white/20 flex items-center justify-center">
+              <PlayCircle className="h-5 w-5 mr-2 text-blue-300" />
+              Live Demo
+            </button>
           </div>
-        </section>
+        </div>
+
+        {/* Optional: If you want to keep the image as a separate element floating over the background */}
+        {/* <div className="w-full lg:w-1/2 order-1 lg:order-1">
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-100 bg-gradient-to-br from-gray-50 to-white">
+            <img
+              src="/images/pharmacy-dashboard-pro.jpg"
+              alt="Dashboard details"
+              className="w-full h-auto"
+            />
+          </div>
+        </div> */}
+      </div>
+    </div>
+  </div>
+</section>
 
         {/* Features Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-white">
