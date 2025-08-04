@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { FiLogIn } from "react-icons/fi"; // Add this import at the top
+import PropTypes from "prop-types";
 
-const PharmacyNavbar = () => {
+const PharmacyNavbar = ({ onSignInClick }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -52,31 +54,31 @@ const PharmacyNavbar = () => {
             <div className="ml-10 flex items-center space-x-8">
               <Link
                 href="/features"
-                className={`px-3 py-2 rounded-md text-sm font- hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
               >
                 Features
               </Link>
               <Link
                 href="/pricing"
-                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
               >
                 Pricing
               </Link>
               <Link
                 href="/demo"
-                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
               >
                 Live Demo
               </Link>
               <Link
                 href="/support"
-                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
               >
                 Support
               </Link>
               <Link
                 href="/blog"
-                className={`px-3 py-2 rounded-md text-sm font-medium hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
               >
                 Blog
               </Link>
@@ -84,7 +86,7 @@ const PharmacyNavbar = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center">
             <Link
               href="/buy-now"
               className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transition-all duration-300 hover:shadow-lg"
@@ -105,6 +107,14 @@ const PharmacyNavbar = () => {
                 />
               </svg>
             </Link>
+            <button
+              type="button"
+              onClick={onSignInClick}
+              className="ml-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-blue-600 rounded-md shadow-sm text-sm font-medium text-blue-600 bg-white hover:bg-blue-50 transition-all duration-300"
+            >
+              <FiLogIn className="mr-2 h-4 w-4" />
+              Sign In
+            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -174,10 +184,22 @@ const PharmacyNavbar = () => {
           >
             Buy Now
           </Link>
+          <button
+            type="button"
+            onClick={onSignInClick}
+            className="block w-full text-center px-3 py-2 rounded-md text-base font-medium text-blue-600 bg-white border border-blue-600 hover:bg-blue-50 mt-2 flex items-center justify-center"
+          >
+            <FiLogIn className="mr-2 h-5 w-5" />
+            Sign In
+          </button>
         </div>
       </div>
     </nav>
   );
+};
+
+PharmacyNavbar.propTypes = {
+  onSignInClick: PropTypes.func,
 };
 
 export default PharmacyNavbar;

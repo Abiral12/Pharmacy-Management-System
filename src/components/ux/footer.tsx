@@ -46,7 +46,7 @@ export function Footer() {
               <div className="bg-white p-2 rounded-lg mr-3">
                 <HeartPulse className="h-6 w-6 text-blue-600" />
               </div>
-              <span className="text-xl font-bold">Pharma<span className="text-blue-300">Soft</span></span>
+              <span className="text-xl font-bold">Pharma<span className="text-blue-300">City</span></span>
             </div>
             <p className="text-blue-200 mb-6">
               The complete pharmacy management solution for modern healthcare providers.
