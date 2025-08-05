@@ -1,4 +1,4 @@
-/* Smooth scrolling enhancements and cross-browser compatibility */
+/* Advanced smooth scrolling with enhanced animations and visual feedback */
 
 /* Enable smooth scrolling for the entire document */
 html {
@@ -18,11 +18,61 @@ html {
 /* Section targeting styles for better visual feedback */
 section[id] {
   scroll-margin-top: 80px;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Add subtle animation when sections come into view */
+/* Enhanced section animations when coming into view */
 section[id] {
-  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated underline for navigation links */
+.nav-link {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #14b8a6, #0d9488);
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+  left: 0;
+}
+
+/* Ripple effect for navigation buttons */
+.nav-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(20, 184, 166, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.nav-button:active::after {
+  width: 300px;
+  height: 300px;
 }
 
 /* Focus styles for accessibility */
@@ -33,7 +83,7 @@ footer[id]:target {
 
 @keyframes highlight-section {
   0% {
-    background-color: rgba(59, 130, 246, 0.1);
+    background-color: rgba(20, 184, 166, 0.1);
   }
   100% {
     background-color: transparent;
@@ -47,10 +97,10 @@ footer[id="support"]:target {
 
 @keyframes highlight-footer {
   0% {
-    box-shadow: inset 0 0 0 3px rgba(59, 130, 246, 0.3);
+    box-shadow: inset 0 0 0 3px rgba(20, 184, 166, 0.3);
   }
   100% {
-    box-shadow: inset 0 0 0 0 rgba(59, 130, 246, 0);
+    box-shadow: inset 0 0 0 0 rgba(20, 184, 166, 0);
   }
 }
 
@@ -96,7 +146,7 @@ footer[id="support"]:target {
   transform: translateX(-50%);
   width: 20px;
   height: 2px;
-  background-color: #3b82f6;
+  background-color: #14b8a6;
   border-radius: 1px;
   transition: width 0.3s ease;
 }
@@ -106,25 +156,155 @@ footer[id="support"]:target {
   width: 100%;
 }
 
-/* Mobile menu smooth transitions */
+/* Advanced mobile menu animations */
+.mobile-menu {
+  transform-origin: top center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .mobile-menu-enter {
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(-20px) scale(0.95);
 }
 
 .mobile-menu-enter-active {
   opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateY(0) scale(1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mobile-menu-exit {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
 .mobile-menu-exit-active {
   opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateY(-20px) scale(0.95);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Staggered animation for mobile menu items */
+.mobile-menu-item {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideInLeft 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.mobile-menu-item:nth-child(1) { animation-delay: 0.1s; }
+.mobile-menu-item:nth-child(2) { animation-delay: 0.15s; }
+.mobile-menu-item:nth-child(3) { animation-delay: 0.2s; }
+.mobile-menu-item:nth-child(4) { animation-delay: 0.25s; }
+.mobile-menu-item:nth-child(5) { animation-delay: 0.3s; }
+.mobile-menu-item:nth-child(6) { animation-delay: 0.35s; }
+.mobile-menu-item:nth-child(7) { animation-delay: 0.4s; }
+.mobile-menu-item:nth-child(8) { animation-delay: 0.45s; }
+
+@keyframes slideInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Floating action button effect for CTA buttons */
+.cta-button {
+  position: relative;
+  transform: translateY(0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+  transition: transform 0.1s;
+}
+
+/* Pulse animation for active navigation state */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.nav-active {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Smooth logo rotation on hover */
+.logo-icon {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-icon:hover {
+  transform: rotate(360deg);
+}
+
+/* Progress bar animations */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #14b8a6, #0d9488, #0f766e);
+  z-index: 9999;
+  transition: width 0.1s ease;
+  box-shadow: 0 0 10px rgba(20, 184, 166, 0.5);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+/* Enhanced section reveal animations */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Magnetic hover effect for navigation items */
+.magnetic-hover {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.magnetic-hover:hover {
+  transform: scale(1.05);
+}
+
+/* Glowing border effect for focused elements */
+.glow-focus:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.5);
+  border-color: #14b8a6;
+}
+
+/* Smooth backdrop blur transitions */
+.backdrop-blur-transition {
+  backdrop-filter: blur(0px);
+  transition: backdrop-filter 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop-blur-transition.blurred {
+  backdrop-filter: blur(12px);
 }

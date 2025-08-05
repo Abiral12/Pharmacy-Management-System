@@ -33,7 +33,7 @@ export function Footer() {
       whileInView="visible"
       viewport={{ once: true }}
       variants={staggerContainer}
-      className="bg-gradient-to-b from-[#00FFFF] to-blue-950 text-white pt-16 pb-8"
+      className="bg-teal-800 text-white pt-16 pb-8"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -41,11 +41,11 @@ export function Footer() {
           <motion.div variants={fadeIn}>
             <div className="flex items-center mb-6">
               <div className="bg-white p-2 rounded-lg mr-3">
-                <HeartPulse className="h-6 w-6 text-blue-600" />
+                <HeartPulse className="h-6 w-6 text-teal-600" />
               </div>
-              <span className="text-xl font-bold">Pharma<span className="text-blue-300">City</span></span>
+              <span className="text-xl font-bold">Pharma<span className="text-teal-300">City</span></span>
             </div>
-            <p className="text-blue-200 mb-6">
+            <p className="text-teal-200 mb-6">
               The complete pharmacy management solution for modern healthcare providers.
             </p>
             <div className="flex space-x-4">
@@ -53,7 +53,7 @@ export function Footer() {
               <Button 
                 variant="ghost" 
                 size="icon"
-                className="text-blue-200 hover:text-white hover:bg-blue-800/50 rounded-full"
+                className="text-teal-200 hover:text-white hover:bg-teal-800/50 rounded-full"
                 aria-label="Facebook"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -63,7 +63,7 @@ export function Footer() {
               <Button 
                 variant="ghost" 
                 size="icon"
-                className="text-blue-200 hover:text-white hover:bg-blue-800/50 rounded-full"
+                className="text-teal-200 hover:text-white hover:bg-teal-800/50 rounded-full"
                 aria-label="Twitter"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -73,7 +73,7 @@ export function Footer() {
               <Button 
                 variant="ghost" 
                 size="icon"
-                className="text-blue-200 hover:text-white hover:bg-blue-800/50 rounded-full"
+                className="text-teal-200 hover:text-white hover:bg-teal-800/50 rounded-full"
                 aria-label="Instagram"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -83,7 +83,7 @@ export function Footer() {
               <Button 
                 variant="ghost" 
                 size="icon"
-                className="text-blue-200 hover:text-white hover:bg-blue-800/50 rounded-full"
+                className="text-teal-200 hover:text-white hover:bg-teal-800/50 rounded-full"
                 aria-label="LinkedIn"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -95,7 +95,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <motion.div variants={fadeIn}>
-            <h3 className="text-lg font-semibold mb-6 border-b border-blue-800 pb-2">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-6 border-b border-teal-800 pb-2">Quick Links</h3>
             <ul className="space-y-3">
               {[
                 { name: 'Features', href: '/features' },
@@ -107,9 +107,9 @@ export function Footer() {
                 <li key={index}>
                   <Link 
                     href={link.href} 
-                    className="text-blue-200 hover:text-white transition-colors flex items-center"
+                    className="text-teal-200 hover:text-white transition-colors flex items-center"
                   >
-                    <span className="w-1 h-1 bg-blue-400 rounded-full mr-2"></span>
+                    <span className="w-1 h-1 bg-teal-400 rounded-full mr-2"></span>
                     {link.name}
                   </Link>
                 </li>
@@ -119,47 +119,47 @@ export function Footer() {
 
           {/* Contact Info */}
           <motion.div variants={fadeIn}>
-            <h3 className="text-lg font-semibold mb-6 border-b border-blue-800 pb-2">Contact Us</h3>
+            <h3 className="text-lg font-semibold mb-6 border-b border-teal-800 pb-2">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start">
-                <MapPin className="h-5 w-5 text-blue-300 mt-0.5 mr-3 flex-shrink-0" />
-                <span className="text-blue-200">123 Medical Drive, Suite 400<br />Health City, HC 12345</span>
+                <MapPin className="h-5 w-5 text-teal-300 mt-0.5 mr-3 flex-shrink-0" />
+                <span className="text-teal-200">123 Medical Drive, Suite 400<br />Health City, HC 12345</span>
               </li>
               <li className="flex items-center">
-                <Phone className="h-5 w-5 text-blue-300 mr-3" />
-                <span className="text-blue-200">(800) 555-PHAR (7427)</span>
+                <Phone className="h-5 w-5 text-teal-300 mr-3" />
+                <span className="text-teal-200">(800) 555-PHAR (7427)</span>
               </li>
               <li className="flex items-center">
-                <Mail className="h-5 w-5 text-blue-300 mr-3" />
-                <span className="text-blue-200">support@pharmasoft.com</span>
+                <Mail className="h-5 w-5 text-teal-300 mr-3" />
+                <span className="text-teal-200">support@pharmasoft.com</span>
               </li>
               <li className="flex items-center">
-                <Clock className="h-5 w-5 text-blue-300 mr-3" />
-                <span className="text-blue-200">Mon-Fri: 9AM-6PM EST</span>
+                <Clock className="h-5 w-5 text-teal-300 mr-3" />
+                <span className="text-teal-200">Mon-Fri: 9AM-6PM EST</span>
               </li>
             </ul>
           </motion.div>
 
           {/* Newsletter */}
           <motion.div variants={fadeIn}>
-            <h3 className="text-lg font-semibold mb-6 border-b border-blue-800 pb-2">Stay Updated</h3>
-            <p className="text-blue-200 mb-4">
+            <h3 className="text-lg font-semibold mb-6 border-b border-teal-800 pb-2">Stay Updated</h3>
+            <p className="text-teal-200 mb-4">
               Subscribe to our newsletter for the latest updates and pharmacy management tips.
             </p>
             <form className="space-y-3">
               <Input 
                 type="email" 
                 placeholder="Your email address" 
-                className="bg-blue-800/50 border-blue-700 text-white placeholder-blue-300 focus:ring-2 focus:ring-blue-500"
+                className="bg-teal-800/50 border-teal-700 text-white placeholder-teal-300 focus:ring-2 focus:ring-teal-500"
               />
               <Button 
                 type="submit" 
-                className="w-full bg-blue-600 hover:bg-blue-500 text-white"
+                className="w-full bg-teal-600 hover:bg-teal-500 text-white"
               >
                 Subscribe
               </Button>
             </form>
-            <p className="text-xs text-blue-400 mt-3">
+            <p className="text-xs text-teal-400 mt-3">
               We respect your privacy. Unsubscribe at any time.
             </p>
           </motion.div>
@@ -168,19 +168,19 @@ export function Footer() {
         {/* Bottom Bar */}
         <motion.div 
           variants={fadeIn}
-          className="border-t border-blue-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+          className="border-t border-teal-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
         >
-          <p className="text-blue-400 text-sm mb-4 md:mb-0">
+          <p className="text-teal-400 text-sm mb-4 md:mb-0">
             © {new Date().getFullYear()} PharmaSoft. All rights reserved.
           </p>
           <div className="flex space-x-6">
-            <Link href="/privacy" className="text-blue-400 hover:text-white text-sm">
+            <Link href="/privacy" className="text-teal-400 hover:text-white text-sm">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="text-blue-400 hover:text-white text-sm">
+            <Link href="/terms" className="text-teal-400 hover:text-white text-sm">
               Terms of Service
             </Link>
-            <Link href="/cookies" className="text-blue-400 hover:text-white text-sm">
+            <Link href="/cookies" className="text-teal-400 hover:text-white text-sm">
               Cookie Policy
             </Link>
           </div>
