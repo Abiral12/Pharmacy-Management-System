@@ -1,11 +1,17 @@
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { FiLogIn } from "react-icons/fi"; // Add this import at the top
-import PropTypes from "prop-types";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { FiLogIn } from "react-icons/fi";
+import { handleNavClick, isHomePage } from "@/utils/smoothScroll";
 
-const PharmacyNavbar = ({ onSignInClick }) => {
+interface PharmacyNavbarProps {
+  onSignInClick?: () => void;
+}
+
+const PharmacyNavbar = ({ onSignInClick }: PharmacyNavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,21 +22,33 @@ const PharmacyNavbar = ({ onSignInClick }) => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/50 backdrop-blur-lg shadow-lg py-2' : 'bg-transparent py-4'}`}>
+    <nav
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/50 backdrop-blur-lg shadow-lg py-2"
+          : "bg-transparent py-4"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center">
-              <div className={`flex items-center justify-center rounded-lg ${scrolled ? 'bg-blue-600' : 'bg-white'} p-2 shadow-md`}>
+              <div
+                className={`flex items-center justify-center rounded-lg ${
+                  scrolled ? "bg-blue-600" : "bg-white"
+                } p-2 shadow-md`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className={`h-8 w-8 ${scrolled ? 'text-white' : 'text-blue-600'}`}
+                  className={`h-8 w-8 ${
+                    scrolled ? "text-white" : "text-blue-600"
+                  }`}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -43,8 +61,17 @@ const PharmacyNavbar = ({ onSignInClick }) => {
                   />
                 </svg>
               </div>
-              <span className={`ml-3 text-xl font-bold ${scrolled ? 'text-blue-600':'text-white'}`}>
-                Pharma<span className={`${scrolled ? 'text-black':'text-cyan-500'}`}>City</span>
+              <span
+                className={`ml-3 text-xl font-bold ${
+                  scrolled ? "text-blue-600" : "text-white"
+                }`}
+              >
+                Pharma
+                <span
+                  className={`${scrolled ? "text-black" : "text-cyan-500"}`}
+                >
+                  City
+                </span>
               </span>
             </Link>
           </div>
@@ -52,33 +79,92 @@ const PharmacyNavbar = ({ onSignInClick }) => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-8">
-              <Link
-                href="/features"
-                className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
-              >
-                Features
-              </Link>
-              <Link
-                href="/pricing"
-                className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
-              >
-                Pricing
-              </Link>
+              {isHomePage(pathname) ? (
+                <button
+                  onClick={() => handleNavClick("/features", pathname)}
+                  className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors cursor-pointer ${
+                    scrolled
+                      ? "text-gray-700 hover:bg-blue-50"
+                      : "text-white hover:bg-blue-600/20"
+                  }`}
+                >
+                  Features
+                </button>
+              ) : (
+                <Link
+                  href="/Home#features"
+                  className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors ${
+                    scrolled
+                      ? "text-gray-700 hover:bg-blue-50"
+                      : "text-white hover:bg-blue-600/20"
+                  }`}
+                >
+                  Features
+                </Link>
+              )}
+              {isHomePage(pathname) ? (
+                <button
+                  onClick={() => handleNavClick("/pricing", pathname)}
+                  className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors cursor-pointer ${
+                    scrolled
+                      ? "text-gray-700 hover:bg-blue-50"
+                      : "text-white hover:bg-blue-600/20"
+                  }`}
+                >
+                  Pricing
+                </button>
+              ) : (
+                <Link
+                  href="/Home#pricing"
+                  className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors ${
+                    scrolled
+                      ? "text-gray-700 hover:bg-blue-50"
+                      : "text-white hover:bg-blue-600/20"
+                  }`}
+                >
+                  Pricing
+                </Link>
+              )}
               <Link
                 href="/demo"
-                className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors ${
+                  scrolled
+                    ? "text-gray-700 hover:bg-blue-50"
+                    : "text-white hover:bg-blue-600/20"
+                }`}
               >
                 Live Demo
               </Link>
-              <Link
-                href="/support"
-                className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
-              >
-                Support
-              </Link>
+              {isHomePage(pathname) ? (
+                <button
+                  onClick={() => handleNavClick("/support", pathname)}
+                  className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors cursor-pointer ${
+                    scrolled
+                      ? "text-gray-700 hover:bg-blue-50"
+                      : "text-white hover:bg-blue-600/20"
+                  }`}
+                >
+                  Support
+                </button>
+              ) : (
+                <Link
+                  href="/Home#support"
+                  className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors ${
+                    scrolled
+                      ? "text-gray-700 hover:bg-blue-50"
+                      : "text-white hover:bg-blue-600/20"
+                  }`}
+                >
+                  Support
+                </Link>
+              )}
               <Link
                 href="/blog"
-                className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors ${scrolled ? 'text-gray-700 hover:bg-blue-50' : 'text-white hover:bg-blue-600/20'}`}
+                className={`px-3 py-2 rounded-md text-sm font-bold hover:text-blue-600 transition-colors ${
+                  scrolled
+                    ? "text-gray-700 hover:bg-blue-50"
+                    : "text-white hover:bg-blue-600/20"
+                }`}
               >
                 Blog
               </Link>
@@ -126,7 +212,9 @@ const PharmacyNavbar = ({ onSignInClick }) => {
             >
               <span className="sr-only">Open main menu</span>
               <svg
-                className={`h-6 w-6 ${scrolled ? 'text-gray-700' : 'text-black'}`}
+                className={`h-6 w-6 ${
+                  scrolled ? "text-gray-700" : "text-black"
+                }`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -137,7 +225,11 @@ const PharmacyNavbar = ({ onSignInClick }) => {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d={mobileMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
+                  d={
+                    mobileMenuOpen
+                      ? "M6 18L18 6M6 6l12 12"
+                      : "M4 6h16M4 12h16M4 18h16"
+                  }
                 />
               </svg>
             </button>
@@ -146,32 +238,74 @@ const PharmacyNavbar = ({ onSignInClick }) => {
       </div>
 
       {/* Mobile menu */}
-      <div className={`md:hidden ${mobileMenuOpen ? 'block' : 'hidden'}`}>
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/50 backdrop-blur-lg shadow-lg py-2' : 'bg-transparent py-4'">
-          <Link
-            href="/features"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-          >
-            Features
-          </Link>
-          <Link
-            href="/pricing"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-          >
-            Pricing
-          </Link>
+      <div className={`md:hidden ${mobileMenuOpen ? "block" : "hidden"}`}>
+        <div
+          className={`px-2 pt-2 pb-3 space-y-1 sm:px-3 ${
+            scrolled
+              ? "bg-white/50 backdrop-blur-lg shadow-lg"
+              : "bg-white/90 backdrop-blur-lg"
+          }`}
+        >
+          {isHomePage(pathname) ? (
+            <button
+              onClick={() => {
+                handleNavClick("/features", pathname);
+                setMobileMenuOpen(false); // Close mobile menu after click
+              }}
+              className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+            >
+              Features
+            </button>
+          ) : (
+            <Link
+              href="/Home#features"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+            >
+              Features
+            </Link>
+          )}
+          {isHomePage(pathname) ? (
+            <button
+              onClick={() => {
+                handleNavClick("/pricing", pathname);
+                setMobileMenuOpen(false); // Close mobile menu after click
+              }}
+              className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+            >
+              Pricing
+            </button>
+          ) : (
+            <Link
+              href="/Home#pricing"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+            >
+              Pricing
+            </Link>
+          )}
           <Link
             href="/demo"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"
           >
             Live Demo
           </Link>
-          <Link
-            href="/support"
-            className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-          >
-            Support
-          </Link>
+          {isHomePage(pathname) ? (
+            <button
+              onClick={() => {
+                handleNavClick("/support", pathname);
+                setMobileMenuOpen(false); // Close mobile menu after click
+              }}
+              className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+            >
+              Support
+            </button>
+          ) : (
+            <Link
+              href="/Home#support"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+            >
+              Support
+            </Link>
+          )}
           <Link
             href="/blog"
             className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50"
@@ -196,10 +330,6 @@ const PharmacyNavbar = ({ onSignInClick }) => {
       </div>
     </nav>
   );
-};
-
-PharmacyNavbar.propTypes = {
-  onSignInClick: PropTypes.func,
 };
 
 export default PharmacyNavbar;

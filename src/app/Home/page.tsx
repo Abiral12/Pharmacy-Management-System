@@ -23,9 +23,11 @@ import {
 } from "@/components/ui/card";
 import { Footer } from "@/components/ux/footer";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PharmacyNavbar from "@/components/ux/Navbar";
 import {SignInForm} from "@/components/ux/SignInForm";
+import { scrollToElement } from "@/utils/smoothScroll";
+import "@/styles/smoothScroll.css";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -44,6 +46,29 @@ const staggerContainer = {
 
 export default function HomePage() {
   const [showSignIn, setShowSignIn] = useState(false);
+
+  // Handle URL hash navigation on page load
+  useEffect(() => {
+    const handleHashNavigation = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        // Small delay to ensure page is fully loaded
+        setTimeout(() => {
+          scrollToElement(hash, { duration: 1000 });
+        }, 100);
+      }
+    };
+
+    // Handle initial load
+    handleHashNavigation();
+
+    // Handle hash changes (back/forward navigation)
+    window.addEventListener('hashchange', handleHashNavigation);
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashNavigation);
+    };
+  }, []);
 
   return (
     <>
@@ -125,7 +150,7 @@ export default function HomePage() {
         </section>
 
         {/* Pricing Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-white">
+        <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-white">
           <motion.div 
             initial="hidden"
             whileInView="visible"
@@ -305,7 +330,7 @@ export default function HomePage() {
         </section>
 
         {/* Features Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-white">
+        <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-white">
           <motion.div
             initial="hidden"
             whileInView="visible"
