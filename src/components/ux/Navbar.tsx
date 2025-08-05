@@ -118,7 +118,7 @@ const PharmacyNavbar = ({ onSignInClick }: PharmacyNavbarProps) => {
                   scrolled ? "text-teal-600" : "text-white"
                 }`}
               >
-                Pharma
+                myPharma
                 <span
                   className={`${scrolled ? "text-black" : "text-teal-300"}`}
                 >
@@ -240,8 +240,8 @@ const PharmacyNavbar = ({ onSignInClick }: PharmacyNavbarProps) => {
 
           {/* Enhanced CTA Buttons with Animations */}
           <div className="hidden md:flex items-center">
-            <Link
-              href="/buy-now"
+            <button
+              onClick={() => scrollToElement('pricing', { duration: 1000 })}
               className="cta-button ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 transition-all duration-300 hover:shadow-lg glow-focus"
             >
               Buy Now
@@ -259,7 +259,7 @@ const PharmacyNavbar = ({ onSignInClick }: PharmacyNavbarProps) => {
                   d="M14 5l7 7m0 0l-7 7m7-7H3"
                 />
               </svg>
-            </Link>
+            </button>
             <button
               type="button"
               onClick={onSignInClick}
@@ -385,12 +385,15 @@ const PharmacyNavbar = ({ onSignInClick }: PharmacyNavbarProps) => {
           >
             Blog
           </Link>
-          <Link
-            href="/buy-now"
+          <button
+            onClick={() => {
+              scrollToElement('pricing', { duration: 1000 });
+              setMobileMenuOpen(false);
+            }}
             className="mobile-menu-item cta-button block w-full text-center px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 mt-2 transition-all duration-300"
           >
             Buy Now
-          </Link>
+          </button>
           <button
             type="button"
             onClick={onSignInClick}

@@ -12,6 +12,8 @@ import {
   PlayCircle,
   Check,
   X,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -53,6 +55,7 @@ const staggerContainer = {
 
 export default function HomePage() {
   const [showSignIn, setShowSignIn] = useState(false);
+  const [openFAQ, setOpenFAQ] = useState(null);
   const router = useRouter();
 
   // Handle URL hash navigation on page load
@@ -126,7 +129,7 @@ export default function HomePage() {
               <div className="flex flex-col items-center justify-center h-full w-full text-center">
                 <div className="space-y-8 text-white flex flex-col items-center justify-center">
                   <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white">
-                    Transform Your Pharmacy Operations
+                    Pharmacy Management System
                   </h1>
 
                   <p className="text-xl text-white leading-relaxed font-light max-w-2xl">
@@ -152,296 +155,6 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </section>
-
-        {/* Pricing Section - Enhanced Professional Design */}
-        <section
-          id="pricing"
-          className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gradient-to-b from-white to-gray-50"
-        >
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <motion.div variants={fadeIn} className="text-center mb-20">
-              <div className="inline-flex items-center gap-2 bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-                <BadgeCheck className="h-4 w-4" />
-                Transparent Pricing
-              </div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 mb-6">
-                Choose Your Perfect Plan
-              </h2>
-              <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                Transparent pricing with no hidden fees. Start small and scale
-                as you grow.
-                <span className="block mt-2 text-teal-600 font-medium">
-                  All plans include free setup and comprehensive training.
-                </span>
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={staggerContainer}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8"
-            >
-              {/* Basic Plan */}
-              <motion.div variants={fadeIn}>
-                <Card className="h-full border border-gray-200 hover:border-teal-300 transition-all">
-                  <CardHeader className="border-b border-gray-200">
-                    <CardTitle className="text-xl font-bold text-slate-800">
-                      Basic
-                    </CardTitle>
-                    <CardDescription className="text-slate-600">
-                      For small pharmacies starting out
-                    </CardDescription>
-                    <div className="mt-4">
-                      <span className="text-3xl font-bold text-slate-800">
-                        NPR 10,000
-                      </span>
-                      <span className="text-slate-500 block">
-                        one-time + NPR 1,000/month
-                      </span>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="pt-6">
-                    <ul className="space-y-3 mb-6 text-sm text-slate-700">
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Up to 500 prescriptions/month</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Basic inventory management</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Patient records</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Basic reporting</span>
-                      </li>
-                      <li className="flex items-start text-slate-400">
-                        <X className="h-4 w-4 text-slate-400 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>No drug interaction checks</span>
-                      </li>
-                      <li className="flex items-start text-slate-400">
-                        <X className="h-4 w-4 text-slate-400 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Email support only</span>
-                      </li>
-                    </ul>
-                    <Button
-                      className="w-full bg-teal-600 hover:bg-teal-700 text-white"
-                      onClick={() => router.push("/pricing")}
-                    >
-                      Get Basic Plan
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              {/* Premium Plan (Featured) */}
-              <motion.div variants={fadeIn}>
-                <Card className="h-full border-2 border-teal-500 shadow-lg relative overflow-hidden">
-                  <div className="absolute top-4 right-4 bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full">
-                    POPULAR
-                  </div>
-                  <CardHeader className="border-b border-gray-200 bg-teal-50">
-                    <CardTitle className="text-xl font-bold text-slate-800">
-                      Premium
-                    </CardTitle>
-                    <CardDescription className="text-slate-600">
-                      For growing pharmacies with more needs
-                    </CardDescription>
-                    <div className="mt-4">
-                      <span className="text-3xl font-bold text-slate-800">
-                        NPR 12,000
-                      </span>
-                      <span className="text-slate-500 block">
-                        one-time + NPR 1,500/month
-                      </span>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="pt-6">
-                    <ul className="space-y-3 mb-6 text-sm text-slate-700">
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Up to 1,500 prescriptions/month</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Advanced inventory tracking</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Patient portal</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Drug interaction checks</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Priority email support</span>
-                      </li>
-                      <li className="flex items-start text-slate-400">
-                        <X className="h-4 w-4 text-slate-400 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>No multi-location support</span>
-                      </li>
-                    </ul>
-                    <Button
-                      className="w-full bg-teal-600 hover:bg-teal-700 text-white"
-                      onClick={() => router.push("/pricing")}
-                    >
-                      Choose Premium
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              {/* Elite Plan */}
-              <motion.div variants={fadeIn}>
-                <Card className="h-full border border-gray-200 hover:border-teal-300 transition-all">
-                  <CardHeader className="border-b border-gray-200">
-                    <CardTitle className="text-xl font-bold text-slate-800">
-                      Elite
-                    </CardTitle>
-                    <CardDescription className="text-slate-600">
-                      Complete solution for established pharmacies
-                    </CardDescription>
-                    <div className="mt-4">
-                      <span className="text-3xl font-bold text-slate-800">
-                        NPR 15,000
-                      </span>
-                      <span className="text-slate-500 block">
-                        one-time + NPR 2,000/month
-                      </span>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="pt-6">
-                    <ul className="space-y-3 mb-6 text-sm text-slate-700">
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Unlimited prescriptions</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Multi-location management</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Advanced analytics</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>24/7 phone support</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Custom reporting</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>API access</span>
-                      </li>
-                    </ul>
-                    <Button
-                      className="w-full bg-teal-600 hover:bg-teal-700 text-white"
-                      onClick={() => router.push("/pricing")}
-                    >
-                      Go Elite
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </motion.div>
-
-            {/* Enterprise Option */}
-            <motion.div
-              variants={fadeIn}
-              className="mt-12 bg-teal-50 rounded-lg p-6 text-center"
-            >
-              <h3 className="text-xl font-bold text-slate-800 mb-2">
-                Need more than Elite?
-              </h3>
-              <p className="text-slate-600 mb-4 max-w-2xl mx-auto">
-                We offer custom enterprise solutions for hospital pharmacies and
-                chains.
-              </p>
-              <Button
-                variant="outline"
-                className="border-teal-600 text-teal-600 hover:bg-teal-50"
-              >
-                Contact for Enterprise Solution
-              </Button>
-            </motion.div>
-          </motion.div>
-        </section>
-
-        {/* Testimonials Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-50">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-          >
-            <motion.div variants={fadeIn} className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-slate-800 mb-4">
-                Trusted by 500+ Pharmacies Across Nepal
-              </h2>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                See how our platform is transforming pharmacy operations
-                nationwide
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={staggerContainer}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8"
-            >
-              {testimonials.map((testimonial, index) => (
-                <motion.div key={index} variants={fadeIn}>
-                  <Card className="h-full hover:shadow-lg transition-all duration-300 border-0 shadow-md">
-                    <CardContent className="p-6">
-                      <div className="flex items-center mb-4">
-                        {[...Array(5)].map((_, i) => (
-                          <svg
-                            key={i}
-                            className="w-5 h-5 text-yellow-400 fill-current"
-                            viewBox="0 0 20 20"
-                          >
-                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                          </svg>
-                        ))}
-                      </div>
-                      <p className="text-slate-600 mb-4 italic">
-                        "{testimonial.quote}"
-                      </p>
-                      <div className="flex items-center">
-                        <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center text-teal-600 font-bold text-lg mr-4">
-                          {testimonial.name.charAt(0)}
-                        </div>
-                        <div>
-                          <p className="font-semibold text-slate-800">
-                            {testimonial.name}
-                          </p>
-                          <p className="text-sm text-slate-500">
-                            {testimonial.role}
-                          </p>
-                          <p className="text-sm text-slate-500">
-                            {testimonial.pharmacy}
-                          </p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
         </section>
 
         {/* Features Section */}
@@ -530,6 +243,259 @@ export default function HomePage() {
           </motion.div>
         </section>
 
+        {/* Pricing Section - Enhanced Professional Design */}
+        <section
+          id="pricing"
+          className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gradient-to-b from-white to-gray-50"
+        >
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <motion.div variants={fadeIn} className="text-center mb-20">
+              <div className="inline-flex items-center gap-2 bg-teal-100 text-teal-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <BadgeCheck className="h-4 w-4" />
+                Transparent Pricing
+              </div>
+              <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 mb-6">
+                Choose Your Perfect Plan
+              </h2>
+              <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                Transparent pricing with no hidden fees. Start small and scale
+                as you grow.
+                <span className="block mt-2 text-teal-600 font-medium">
+                  All plans include free setup and comprehensive training.
+                </span>
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={staggerContainer}
+              className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            >
+              {/* Basic Plan */}
+              <motion.div variants={fadeIn}>
+                <Card className="h-full border border-gray-200 hover:border-teal-300 transition-all">
+                  <CardHeader className="border-b border-gray-200 text-center">
+                    <CardTitle className="text-xl font-bold text-slate-800">
+                      Basic
+                    </CardTitle>
+                    <CardDescription className="text-slate-600">
+                      For small pharmacies starting out
+                    </CardDescription>
+                    <div className="mt-4 text-center">
+                      <div className="mb-2">
+                        <span className="text-3xl font-bold text-slate-800">
+                          NPR 999
+                        </span>
+                        <span className="text-lg font-semibold text-slate-600 ml-1">
+                          /month
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-sm text-slate-500">
+                          NPR 9,999 one time
+                        </span>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="pt-6">
+                    <ul className="space-y-3 mb-6 text-sm text-slate-700">
+                      <li className="flex items-start">
+                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Up to 500 prescriptions/month</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Basic inventory management</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Patient records</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Basic reporting</span>
+                      </li>
+                      <li className="flex items-start text-slate-400">
+                        <X className="h-4 w-4 text-slate-400 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>No drug interaction checks</span>
+                      </li>
+                      <li className="flex items-start text-slate-400">
+                        <X className="h-4 w-4 text-slate-400 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Email support only</span>
+                      </li>
+                    </ul>
+                    <Button
+                      className="w-full bg-teal-600 hover:bg-teal-700 text-white"
+                      onClick={() =>
+                        scrollToElement("pricing", { duration: 1000 })
+                      }
+                    >
+                      Get Basic Plan
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Premium Plan (Featured) */}
+              <motion.div variants={fadeIn}>
+                <Card className="h-full border-2 border-teal-500 shadow-lg relative overflow-hidden">
+                  <div className="absolute top-4 right-4 bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                    POPULAR
+                  </div>
+                  <CardHeader className="border-b border-gray-200 bg-teal-50 text-center">
+                    <CardTitle className="text-xl font-bold text-slate-800">
+                      Premium
+                    </CardTitle>
+                    <CardDescription className="text-slate-600">
+                      For growing pharmacies with more needs
+                    </CardDescription>
+                    <div className="mt-4 text-center">
+                      <div className="mb-2">
+                        <span className="text-3xl font-bold text-slate-800">
+                          NPR 1,499
+                        </span>
+                        <span className="text-lg font-semibold text-slate-600 ml-1">
+                          /month
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-sm text-slate-500">
+                          NPR 14,999 one time
+                        </span>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="pt-6">
+                    <ul className="space-y-3 mb-6 text-sm text-slate-700">
+                      <li className="flex items-start">
+                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Up to 1,500 prescriptions/month</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Advanced inventory tracking</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Patient portal</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Drug interaction checks</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Priority email support</span>
+                      </li>
+                      <li className="flex items-start text-slate-400">
+                        <X className="h-4 w-4 text-slate-400 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>No multi-location support</span>
+                      </li>
+                    </ul>
+                    <Button
+                      className="w-full bg-teal-600 hover:bg-teal-700 text-white"
+                      onClick={() =>
+                        scrollToElement("pricing", { duration: 1000 })
+                      }
+                    >
+                      Choose Premium
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+
+              {/* Elite Plan */}
+              <motion.div variants={fadeIn}>
+                <Card className="h-full border border-gray-200 hover:border-teal-300 transition-all">
+                  <CardHeader className="border-b border-gray-200 text-center">
+                    <CardTitle className="text-xl font-bold text-slate-800">
+                      Elite
+                    </CardTitle>
+                    <CardDescription className="text-slate-600">
+                      Complete solution for established pharmacies
+                    </CardDescription>
+                    <div className="mt-4 text-center">
+                      <div className="mb-2">
+                        <span className="text-3xl font-bold text-slate-800">
+                          NPR 1,999
+                        </span>
+                        <span className="text-lg font-semibold text-slate-600 ml-1">
+                          /month
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-sm text-slate-500">
+                          NPR 19,999 one time
+                        </span>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="pt-6">
+                    <ul className="space-y-3 mb-6 text-sm text-slate-700">
+                      <li className="flex items-start">
+                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Unlimited prescriptions</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Multi-location management</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Advanced analytics</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>24/7 phone support</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>Custom reporting</span>
+                      </li>
+                      <li className="flex items-start">
+                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <span>API access</span>
+                      </li>
+                    </ul>
+                    <Button
+                      className="w-full bg-teal-600 hover:bg-teal-700 text-white"
+                      onClick={() =>
+                        scrollToElement("pricing", { duration: 1000 })
+                      }
+                    >
+                      Go Elite
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            </motion.div>
+
+            {/* Enterprise Option */}
+            <motion.div
+              variants={fadeIn}
+              className="mt-12 bg-teal-50 rounded-lg p-6 text-center"
+            >
+              <h3 className="text-xl font-bold text-slate-800 mb-2">
+                Need more than Elite?
+              </h3>
+              <p className="text-slate-600 mb-4 max-w-2xl mx-auto">
+                We offer custom enterprise solutions for hospital pharmacies and
+                chains.
+              </p>
+              <Button
+                variant="outline"
+                className="border-teal-600 text-teal-600 hover:bg-teal-50"
+              >
+                Contact for Enterprise Solution
+              </Button>
+            </motion.div>
+          </motion.div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
           <motion.div
@@ -555,6 +521,162 @@ export default function HomePage() {
                 className="bg-white text-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
               >
                 Start Free 30-Day Trial <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </motion.div>
+          </motion.div>
+        </section>
+
+        {/* Testimonials Section */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gray-50">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <motion.div variants={fadeIn} className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-slate-800 mb-4">
+                Trusted by 500+ Pharmacies Across Nepal
+              </h2>
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                See how our platform is transforming pharmacy operations
+                nationwide
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={staggerContainer}
+              className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            >
+              {testimonials.map((testimonial, index) => (
+                <motion.div key={index} variants={fadeIn}>
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 border-0 shadow-md">
+                    <CardContent className="p-6">
+                      <div className="flex items-center mb-4">
+                        {[...Array(5)].map((_, i) => (
+                          <svg
+                            key={i}
+                            className="w-5 h-5 text-yellow-400 fill-current"
+                            viewBox="0 0 20 20"
+                          >
+                            <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                          </svg>
+                        ))}
+                      </div>
+                      <p className="text-slate-600 mb-4 italic">
+                        "{testimonial.quote}"
+                      </p>
+                      <div className="flex items-center">
+                        <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center text-teal-600 font-bold text-lg mr-4">
+                          {testimonial.name.charAt(0)}
+                        </div>
+                        <div>
+                          <p className="font-semibold text-slate-800">
+                            {testimonial.name}
+                          </p>
+                          <p className="text-sm text-slate-500">
+                            {testimonial.role}
+                          </p>
+                          <p className="text-sm text-slate-500">
+                            {testimonial.pharmacy}
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-white">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <motion.div variants={fadeIn} className="text-center mb-16">
+              <div className="inline-block border-2 border-teal-200 rounded-lg px-6 py-4 mb-6 bg-teal-50">
+                <h2 className="text-3xl font-bold text-slate-800 mb-2">
+                  Frequently Asked Questions
+                </h2>
+              </div>
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                Get answers to common questions about our pharmacy management
+                system
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={staggerContainer}
+              className="max-w-4xl mx-auto"
+            >
+              {faqs.map((faq, index) => (
+                <motion.div key={index} variants={fadeIn} className="mb-4">
+                  <Card className="border border-gray-200 hover:border-teal-300 transition-all duration-300 hover:shadow-md">
+                    <motion.div
+                      className="cursor-pointer"
+                      onClick={() =>
+                        setOpenFAQ(openFAQ === index ? null : index)
+                      }
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <CardHeader className="pb-4">
+                        <div className="flex justify-between items-center">
+                          <CardTitle className="text-lg font-semibold text-slate-800 text-left">
+                            {faq.question}
+                          </CardTitle>
+                          <motion.div
+                            animate={{ rotate: openFAQ === index ? 180 : 0 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                          >
+                            <ChevronDown className="h-5 w-5 text-teal-600 flex-shrink-0" />
+                          </motion.div>
+                        </div>
+                      </CardHeader>
+                    </motion.div>
+                    <motion.div
+                      initial={false}
+                      animate={{
+                        height: openFAQ === index ? "auto" : 0,
+                        opacity: openFAQ === index ? 1 : 0,
+                      }}
+                      transition={{
+                        duration: 0.3,
+                        ease: "easeInOut",
+                      }}
+                      style={{ overflow: "hidden" }}
+                    >
+                      <CardContent className="pt-0 pb-6">
+                        <motion.p
+                          initial={{ y: -10 }}
+                          animate={{ y: 0 }}
+                          transition={{ duration: 0.2, delay: 0.1 }}
+                          className="text-slate-600 leading-relaxed"
+                        >
+                          {faq.answer}
+                        </motion.p>
+                      </CardContent>
+                    </motion.div>
+                  </Card>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <motion.div variants={fadeIn} className="text-center mt-12">
+              <p className="text-slate-600 mb-4">
+                Still have questions? We're here to help!
+              </p>
+              <Button
+                variant="outline"
+                className="border-teal-600 text-teal-600 hover:bg-teal-50"
+              >
+                Contact Support
               </Button>
             </motion.div>
           </motion.div>
@@ -652,5 +774,47 @@ const steps = [
     title: "Go Live & Start Saving",
     description:
       "Begin processing prescriptions faster, managing inventory smarter, and serving patients better from day one.",
+  },
+];
+const faqs = [
+  {
+    question: "How long does it take to set up the system?",
+    answer:
+      "Our team can have your pharmacy management system up and running within 24 hours. This includes data migration, staff training, and full system configuration. Most pharmacies are processing prescriptions on day one.",
+  },
+  {
+    question: "Is my pharmacy data secure and backed up?",
+    answer:
+      "Absolutely. We use bank-level encryption and store all data in secure, HIPAA-compliant servers. Your data is automatically backed up multiple times daily, and we maintain 99.9% uptime with redundant systems.",
+  },
+  {
+    question: "Can I import my existing patient and inventory data?",
+    answer:
+      "Yes! We support data import from most pharmacy management systems, Excel files, and manual databases. Our team handles the entire migration process to ensure no data is lost during the transition.",
+  },
+  {
+    question: "What happens if I need help or have technical issues?",
+    answer:
+      "All plans include comprehensive support. Basic plan users get email support, Premium users get priority email support, and Elite users get 24/7 phone support. We also provide free training for your entire staff.",
+  },
+  {
+    question: "Does the system work with Nepal's pharmacy regulations?",
+    answer:
+      "Yes, our system is specifically designed for Nepali pharmacies and fully complies with all local regulations. We automatically generate required reports and maintain audit trails for regulatory compliance.",
+  },
+  {
+    question: "Can I try the system before committing to a plan?",
+    answer:
+      "Absolutely! We offer a 30-day free trial with full access to all features. No credit card required, and our team will help you set up and test the system with your actual pharmacy data.",
+  },
+  {
+    question: "What if I want to cancel or change my plan?",
+    answer:
+      "You can upgrade, downgrade, or cancel your plan at any time. There are no long-term contracts or cancellation fees. If you cancel, you'll have access to export all your data.",
+  },
+  {
+    question: "Does the system work on mobile devices and tablets?",
+    answer:
+      "Yes! Our system is fully responsive and works perfectly on smartphones, tablets, and computers. You can manage your pharmacy from anywhere with an internet connection.",
   },
 ];
