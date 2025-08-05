@@ -1,6 +1,6 @@
-/* Futura-like Font Stack - Using system fonts and web alternatives */
-/* Import Nunito Sans as a close web alternative to Futura */
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700;800&display=swap');
+/* Professional Font Stack - Futura and Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Futura:wght@300;400;500;600;700;800&display=swap');
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -122,30 +122,162 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Nunito Sans', 'Futura', 'Futura PT', 'Century Gothic', 'Avenir', 'Helvetica Neue', sans-serif;
+    font-family: 'Futura', 'Poppins', 'Futura PT', 'Century Gothic', 'Avenir', 'Helvetica Neue', sans-serif;
     font-feature-settings: 'kern' 1, 'liga' 1;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   
-  /* Ensure all headings use the Futura-like font stack */
+  /* Headings use Poppins for a modern, friendly look */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Nunito Sans', 'Futura', 'Futura PT', 'Century Gothic', 'Avenir', 'Helvetica Neue', sans-serif;
+    font-family: 'Poppins', 'Futura', 'Century Gothic', 'Avenir', 'Helvetica Neue', sans-serif;
     font-weight: 600;
     letter-spacing: -0.025em;
   }
   
-  /* Optimize button and interactive element typography */
+  /* Buttons and interactive elements use Futura for clean aesthetics */
   button, .btn, [role="button"] {
-    font-family: 'Nunito Sans', 'Futura', 'Futura PT', 'Century Gothic', 'Avenir', 'Helvetica Neue', sans-serif;
+    font-family: 'Futura', 'Poppins', 'Century Gothic', 'Avenir', 'Helvetica Neue', sans-serif;
     font-weight: 500;
     letter-spacing: 0.025em;
   }
   
-  /* Navigation and brand typography */
+  /* Navigation uses Poppins for brand consistency */
   nav, .navbar, .nav-link {
-    font-family: 'Nunito Sans', 'Futura', 'Futura PT', 'Century Gothic', 'Avenir', 'Helvetica Neue', sans-serif;
+    font-family: 'Poppins', 'Futura', 'Century Gothic', 'Avenir', 'Helvetica Neue', sans-serif;
     font-weight: 500;
   }
+}
+
+/* Professional enhancements */
+@layer components {
+  /* Smooth transitions for all interactive elements */
+  .transition-all {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Professional glass effect */
+  .glass-effect {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Enhanced shadows */
+  .shadow-professional {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .shadow-professional-lg {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+  
+  /* Professional gradient backgrounds */
+  .bg-professional-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  
+  .bg-teal-professional {
+    background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+  }
+  
+  /* Professional text shadows */
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-shadow-md {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Professional hover effects */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Professional button styles */
+  .btn-professional {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-professional::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  .btn-professional:hover::before {
+    left: 100%;
+  }
+  
+  /* Professional card styles */
+  .card-professional {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .card-professional:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Professional animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(20, 184, 166, 0.6);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
 }

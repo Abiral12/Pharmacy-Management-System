@@ -47,7 +47,7 @@ export function SignInForm({ onClose }: { onClose: () => void }) {
           className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100"
         >
           {/* Modal header */}
-          <div className="relative bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white">
+          <div className="relative bg-teal-professional p-6 text-white">
             <h2 className="text-2xl font-bold text-center">
               Welcome to <span className="text-cyan-300">PharmaCity</span>
             </h2>
@@ -68,7 +68,7 @@ export function SignInForm({ onClose }: { onClose: () => void }) {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Username
                 </label>
-                <div className="flex items-center border border-gray-200 rounded-lg px-4 py-3 bg-white transition-all duration-200 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100">
+                <div className="flex items-center border border-gray-200 rounded-lg px-4 py-3 bg-white transition-all duration-200 focus-within:border-teal-500 focus-within:ring-2 focus-within:ring-teal-100">
                   <FiUser className="text-gray-400 mr-3" size={18} />
                   <input
                     type="text"
@@ -86,7 +86,7 @@ export function SignInForm({ onClose }: { onClose: () => void }) {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Password
                 </label>
-                <div className="flex items-center border border-gray-200 rounded-lg px-4 py-3 bg-white transition-all duration-200 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100">
+                <div className="flex items-center border border-gray-200 rounded-lg px-4 py-3 bg-white transition-all duration-200 focus-within:border-teal-500 focus-within:ring-2 focus-within:ring-teal-100">
                   <FiLock className="text-gray-400 mr-3" size={18} />
                   <input
                     type={showPassword ? "text" : "password"}
@@ -100,7 +100,7 @@ export function SignInForm({ onClose }: { onClose: () => void }) {
                     type="button"
                     tabIndex={-1}
                     onClick={() => setShowPassword((prev) => !prev)}
-                    className="ml-2 text-gray-400 hover:text-blue-600 focus:outline-none"
+                    className="ml-2 text-gray-400 hover:text-teal-600 focus:outline-none"
                     aria-label={showPassword ? "Hide password" : "Show password"}
                   >
                     {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
@@ -115,7 +115,7 @@ export function SignInForm({ onClose }: { onClose: () => void }) {
                     id="remember-me"
                     name="remember-me"
                     type="checkbox"
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-teal-600 focus:ring-teal-500 border-gray-300 rounded"
                   />
                   <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
                     Remember me
@@ -123,7 +123,7 @@ export function SignInForm({ onClose }: { onClose: () => void }) {
                 </div>
                 <Link
                   href="/forgot-password"
-                  className="text-sm text-blue-600 hover:underline"
+                  className="text-sm text-teal-600 hover:underline"
                 >
                   Forgot password?
                 </Link>
@@ -136,7 +136,7 @@ export function SignInForm({ onClose }: { onClose: () => void }) {
               >
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-lg py-3 shadow-lg transition-all duration-300"
+                  className="w-full bg-teal-professional hover:from-teal-700 hover:to-teal-800 text-white font-semibold rounded-lg py-3 shadow-lg transition-all duration-300 btn-professional"
                   onMouseEnter={() => setIsHovered(true)}
                   onMouseLeave={() => setIsHovered(false)}
                 >
@@ -187,7 +187,7 @@ export function SignInForm({ onClose }: { onClose: () => void }) {
           <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 text-center">
             <span className="text-gray-600 text-sm">
               Don`t have an account?{" "}
-              <Link href="/signup" className="text-blue-600 font-medium hover:underline">
+              <Link href="/signup" className="text-teal-600 font-medium hover:underline">
                 Sign up
               </Link>
             </span>
