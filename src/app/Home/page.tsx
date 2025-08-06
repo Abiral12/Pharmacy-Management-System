@@ -262,7 +262,8 @@ export default function HomePage() {
                 Complete Pharmacy Management
               </h2>
               <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                Streamline your pharmacy operations with our comprehensive management system.
+                Streamline your pharmacy operations with our comprehensive
+                management system.
                 <span className="block mt-2 text-teal-600 font-medium">
                   All features included with professional support and training.
                 </span>
@@ -397,7 +398,8 @@ export default function HomePage() {
                 Plus Advanced Analytics & Reports
               </h3>
               <p className="text-slate-600 mb-4 max-w-2xl mx-auto">
-                Comprehensive reporting suite with sales analytics, inventory reports, and patient insights.
+                Comprehensive reporting suite with sales analytics, inventory
+                reports, and patient insights.
               </p>
               <Button
                 className="bg-teal-600 text-white hover:bg-teal-700"

@@ -5,6 +5,7 @@ import { FiUser, FiLock, FiArrowRight, FiX, FiEye, FiEyeOff } from "react-icons/
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -20,7 +21,22 @@ export function SignInForm({ onClose }: { onClose: () => void }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isHovered, setIsHovered] = useState(false);
-  const [showPassword, setShowPassword] = useState(false); // <-- Add this
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  const handleSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    // Simulate authentication process
+    setTimeout(() => {
+      // Auto-redirect to desktop mode upon successful sign-in
+      router.push('/desktop');
+      onClose();
+      setIsLoading(false);
+    }, 1000);
+  };
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
@@ -62,7 +78,7 @@ export function SignInForm({ onClose }: { onClose: () => void }) {
 
           {/* Modal body */}
           <div className="p-6">
-            <form className="space-y-5">
+            <form className="space-y-5" onSubmit={handleSignIn}>
               {/* Username field */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">

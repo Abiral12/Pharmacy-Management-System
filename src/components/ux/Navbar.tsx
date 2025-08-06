@@ -213,15 +213,9 @@ const PharmacyNavbar = ({ onSignInClick }: PharmacyNavbarProps) => {
 
           {/* Enhanced CTA Buttons with Animations */}
           <div className="hidden md:flex items-center">
-            <Link
-              href="/desktop"
-              className="mr-4 whitespace-nowrap inline-flex items-center justify-center px-3 py-2 border border-purple-400/50 rounded-md shadow-sm text-sm font-medium text-purple-300 bg-gradient-to-r from-purple-600/20 to-blue-600/20 hover:from-purple-600/30 hover:to-blue-600/30 transition-all duration-300 hover:shadow-lg backdrop-blur-sm"
-            >
-              🖥️ Desktop Mode
-            </Link>
             <button
               onClick={() => scrollToElement('pricing', { duration: 1000 })}
-              className="cta-button ml-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 transition-all duration-300 hover:shadow-lg glow-focus"
+              className="cta-button whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 transition-all duration-300 hover:shadow-lg glow-focus"
             >
               Buy Now
               <svg

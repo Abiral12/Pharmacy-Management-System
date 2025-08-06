@@ -6,6 +6,7 @@ import {
   Medication, 
   InteractionWarning 
 } from '@/types/pharmacy';
+import { Invoice, InvoiceItem, Customer, BillingValidation } from '@/types/billing';
 
 // Utility functions for validation
 export const isValidEmail = (email: string): boolean => {
@@ -286,4 +287,262 @@ export const formatValidationErrors = (errors: string[]): string => {
   if (errors.length === 0) return '';
   if (errors.length === 1) return errors[0];
   return `• ${errors.join('\n• ')}`;
+};
+
+// Billing validation functions
+export const validateInvoiceData = (data: Partial<Invoice>): BillingValidation => {
+  const errors: string[] = [];
+  const warnings: string[] = [];
+
+  // Required field validation
+  if (!data.customerName || data.customerName.trim().length < 2) {
+    errors.push('Customer name must be at least 2 characters long');
+  }
+
+  if (!data.items || data.items.length === 0) {
+    errors.push('At least one item must be added to the invoice');
+  }
+
+  if (!data.dueDate || !isValidDate(data.dueDate)) {
+    errors.push('Please provide a valid due date');
+  }
+
+  // Validate invoice items
+  if (data.items) {
+    data.items.forEach((item, index) => {
+      if (!item.name || item.name.trim().length < 2) {
+        errors.push(`Item ${index + 1}: Name is required`);
+      }
+
+      if (!item.quantity || item.quantity <= 0) {
+        errors.push(`Item ${index + 1}: Quantity must be greater than 0`);
+      }
+
+      if (!item.unitPrice || item.unitPrice < 0) {
+        errors.push(`Item ${index + 1}: Unit price must be a positive number`);
+      }
+
+      // Check if calculated total matches
+      const expectedTotal = item.quantity * item.unitPrice;
+      if (Math.abs(item.total - expectedTotal) > 0.01) {
+        warnings.push(`Item ${index + 1}: Total amount may be incorrect`);
+      }
+    });
+  }
+
+  // Validate totals
+  if (data.subtotal !== undefined && data.subtotal < 0) {
+    errors.push('Subtotal cannot be negative');
+  }
+
+  if (data.tax !== undefined && data.tax < 0) {
+    errors.push('Tax amount cannot be negative');
+  }
+
+  if (data.discount !== undefined && data.discount < 0) {
+    errors.push('Discount amount cannot be negative');
+  }
+
+  if (data.total !== undefined && data.total <= 0) {
+    errors.push('Total amount must be greater than 0');
+  }
+
+  // Validate email if provided
+  if (data.customerEmail && !isValidEmail(data.customerEmail)) {
+    errors.push('Please provide a valid customer email address');
+  }
+
+  // Validate phone if provided
+  if (data.customerPhone && !isValidPhone(data.customerPhone)) {
+    errors.push('Please provide a valid customer phone number');
+  }
+
+  // Business logic validation
+  if (data.dueDate && isValidDate(data.dueDate)) {
+    const dueDate = new Date(data.dueDate);
+    const today = new Date();
+    const daysDiff = Math.ceil((dueDate.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+    
+    if (daysDiff < 0) {
+      warnings.push('Due date is in the past');
+    } else if (daysDiff > 365) {
+      warnings.push('Due date is more than a year in the future');
+    }
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors,
+    warnings
+  };
+};
+
+export const validateInvoiceItem = (item: Partial<InvoiceItem>): BillingValidation => {
+  const errors: string[] = [];
+  const warnings: string[] = [];
+
+  if (!item.name || item.name.trim().length < 2) {
+    errors.push('Item name must be at least 2 characters long');
+  }
+
+  if (!item.quantity || item.quantity <= 0) {
+    errors.push('Quantity must be greater than 0');
+  }
+
+  if (!item.unitPrice || item.unitPrice < 0) {
+    errors.push('Unit price must be a positive number');
+  }
+
+  // Validate calculated total
+  if (item.quantity && item.unitPrice && item.total) {
+    const expectedTotal = item.quantity * item.unitPrice;
+    if (Math.abs(item.total - expectedTotal) > 0.01) {
+      warnings.push('Total amount may be incorrect');
+    }
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors,
+    warnings
+  };
+};
+
+export const validateCustomerData = (data: Partial<Customer>): BillingValidation => {
+  const errors: string[] = [];
+  const warnings: string[] = [];
+
+  // Required field validation
+  if (!data.name || data.name.trim().length < 2) {
+    errors.push('Customer name must be at least 2 characters long');
+  }
+
+  // Optional field validation
+  if (data.email && !isValidEmail(data.email)) {
+    errors.push('Please provide a valid email address');
+  }
+
+  if (data.phone && !isValidPhone(data.phone)) {
+    errors.push('Please provide a valid phone number');
+  }
+
+  // Business logic validation
+  if (data.creditLimit !== undefined && data.creditLimit < 0) {
+    errors.push('Credit limit cannot be negative');
+  }
+
+  if (data.paymentTerms !== undefined && (data.paymentTerms < 0 || data.paymentTerms > 365)) {
+    errors.push('Payment terms must be between 0 and 365 days');
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors,
+    warnings
+  };
+};
+
+// Advanced validation functions
+export const validatePaymentAmount = (amount: number, invoiceTotal: number): BillingValidation => {
+  const errors: string[] = [];
+  const warnings: string[] = [];
+
+  if (amount <= 0) {
+    errors.push('Payment amount must be greater than 0');
+  }
+
+  if (amount > invoiceTotal * 1.1) { // Allow 10% overpayment
+    warnings.push('Payment amount is significantly higher than invoice total');
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors,
+    warnings
+  };
+};
+
+export const validateDateRange = (startDate: string, endDate: string): BillingValidation => {
+  const errors: string[] = [];
+  const warnings: string[] = [];
+
+  if (!isValidDate(startDate)) {
+    errors.push('Please provide a valid start date');
+  }
+
+  if (!isValidDate(endDate)) {
+    errors.push('Please provide a valid end date');
+  }
+
+  if (isValidDate(startDate) && isValidDate(endDate)) {
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (start > end) {
+      errors.push('Start date cannot be after end date');
+    }
+
+    const daysDiff = Math.ceil((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+    if (daysDiff > 365) {
+      warnings.push('Date range is longer than one year');
+    }
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors,
+    warnings
+  };
+};
+
+// Utility validation functions
+export const isValidCurrency = (amount: string | number): boolean => {
+  const num = typeof amount === 'string' ? parseFloat(amount) : amount;
+  return !isNaN(num) && num >= 0 && Number.isFinite(num);
+};
+
+export const isValidPercentage = (value: number): boolean => {
+  return value >= 0 && value <= 100;
+};
+
+export const isValidTaxId = (taxId: string): boolean => {
+  // Simple validation for tax ID (can be customized based on country)
+  return /^[A-Z0-9]{6,15}$/.test(taxId.toUpperCase());
+};
+
+export const isValidBankAccount = (accountNumber: string): boolean => {
+  // Simple validation for bank account number
+  return /^\d{10,20}$/.test(accountNumber);
+};
+
+export const sanitizeInput = (input: string): string => {
+  return input.trim().replace(/[<>]/g, '');
+};
+
+export const validateRequired = (value: any, fieldName: string): string | null => {
+  if (value === null || value === undefined || value === '') {
+    return `${fieldName} is required`;
+  }
+  return null;
+};
+
+export const validateMinLength = (value: string, minLength: number, fieldName: string): string | null => {
+  if (value.length < minLength) {
+    return `${fieldName} must be at least ${minLength} characters long`;
+  }
+  return null;
+};
+
+export const validateMaxLength = (value: string, maxLength: number, fieldName: string): string | null => {
+  if (value.length > maxLength) {
+    return `${fieldName} must be no more than ${maxLength} characters long`;
+  }
+  return null;
+};
+
+export const validateNumericRange = (value: number, min: number, max: number, fieldName: string): string | null => {
+  if (value < min || value > max) {
+    return `${fieldName} must be between ${min} and ${max}`;
+  }
+  return null;
 };

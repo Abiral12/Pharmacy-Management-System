@@ -2,29 +2,29 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import RecycleBinWindow from '@/components/windows/RecycleBinWindow';
-import { RecycleBinManager } from '@/utils/recycleBinManager';
+import '@/styles/mobile.css';
 import { 
   Users, 
-  Minimize2,
-  Maximize2,
-  X,
   Wifi,
   Battery,
   Search,
-  Trash2,
-  Terminal,
-  AppWindow,
   Database,
   BarChart3,
-  Pill,
-  Plus,
   AlertTriangle,
   TrendingUp,
-  Bell
+  Bell,
+  Pill,
+  Terminal,
+  Trash2,
+  Minimize2,
+  Maximize2,
+  X
 } from 'lucide-react';
-import PrescriptionsWindow from '../windows/PrescriptionsWindow';
+import BillingWindow from '../windows/BillingWindow';
+import InventoryWindow from '../windows/InventoryWindow';
 import PatientsWindow from '../windows/PatientsWindow';
+import PrescriptionsWindow from '../windows/PrescriptionsWindow';
+import RecycleBinWindow from '../windows/RecycleBinWindow';
 
 interface Window {
   id: string;
@@ -38,13 +38,7 @@ interface Window {
   zIndex: number;
 }
 
-interface DesktopIcon {
-  id: string;
-  title: string;
-  icon: React.ReactNode;
-  position: { x: number; y: number };
-  windowComponent: React.ReactNode;
-}
+
 
 const Desktop: React.FC = () => {
   const [windows, setWindows] = useState<Window[]>([]);
@@ -76,20 +70,7 @@ const Desktop: React.FC = () => {
     // In a real app, this would restore multiple items
   };
 
-  // Simple placeholder components for missing windows
-  const InventoryWindow = () => (
-    <div className="p-6 h-full">
-      <div className="flex items-center mb-6">
-        <Database className="w-6 h-6 mr-2 text-teal-600" />
-        <h2 className="text-2xl font-bold text-slate-800">Inventory Management</h2>
-      </div>
-      <div className="text-center py-12">
-        <Database className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-        <h3 className="text-lg font-medium text-gray-600 mb-2">Inventory Coming Soon</h3>
-        <p className="text-gray-500">Inventory management features will be available in the next update.</p>
-      </div>
-    </div>
-  );
+  // Placeholder components for missing windows
 
   const ReportsWindow = () => (
     <div className="p-6 h-full">
@@ -105,78 +86,16 @@ const Desktop: React.FC = () => {
     </div>
   );
 
-  const PharmTerminalWindow = () => (
-    <div className="p-6 h-full bg-black text-green-400 font-mono">
-      <div className="flex items-center mb-6">
-        <Terminal className="w-6 h-6 mr-2" />
-        <h2 className="text-xl font-bold">PharmOS Terminal</h2>
-      </div>
-      <div className="space-y-2">
-        <div>$ pharmOS --version</div>
-        <div>PharmOS Terminal v1.0.0</div>
-        <div>$ system status</div>
-        <div>✓ Database: Connected</div>
-        <div>✓ Inventory: Synced</div>
-        <div>✓ Prescriptions: Active</div>
-        <div>✓ Patients: 0 registered</div>
-        <div className="mt-4">$ _</div>
-      </div>
-    </div>
-  );
+  // Terminal component removed as per system requirements
 
-  // Core pharmacy-focused desktop icons
-  const desktopIcons: DesktopIcon[] = [
-    {
-      id: 'inventory',
-      title: 'Inventory Manager',
-      icon: <Database className="w-8 h-8 text-white" />,
-      position: { x: 50, y: 80 },
-      windowComponent: <InventoryWindow />
-    },
-    {
-      id: 'prescriptions',
-      title: 'Prescriptions',
-      icon: <Pill className="w-8 h-8 text-white" />,
-      position: { x: 50, y: 180 },
-      windowComponent: <PrescriptionsWindow />
-    },
-    {
-      id: 'patients',
-      title: 'Patient Records',
-      icon: <Users className="w-8 h-8 text-white" />,
-      position: { x: 50, y: 280 },
-      windowComponent: <PatientsWindow onClose={() => {}} />
-    },
-    {
-      id: 'reports',
-      title: 'Analytics & Reports',
-      icon: <BarChart3 className="w-8 h-8 text-white" />,
-      position: { x: 50, y: 380 },
-      windowComponent: <ReportsWindow />
-    },
-    {
-      id: 'terminal',
-      title: 'PharmOS Terminal',
-      icon: <Terminal className="w-8 h-8 text-white" />,
-      position: { x: 150, y: 80 },
-      windowComponent: <PharmTerminalWindow />
-    },
-    {
-      id: 'trash',
-      title: 'Recycle Bin',
-      icon: <Trash2 className="w-8 h-8 text-white" />,
-      position: { x: 150, y: 180 },
-      windowComponent: <RecycleBinWindow onItemRestore={handleItemRestore} onBulkRestore={handleBulkRestore} />
-    }
-  ];
-
-  // Streamlined dock applications
+  // Streamlined dock applications with all modules
   const dockApps = [
-    { id: 'inventory', icon: <Database className="w-8 h-8 text-white" />, title: 'Inventory' },
-    { id: 'prescriptions', icon: <Pill className="w-8 h-8 text-white" />, title: 'Prescriptions' },
-    { id: 'patients', icon: <Users className="w-8 h-8 text-white" />, title: 'Patients' },
-    { id: 'reports', icon: <BarChart3 className="w-8 h-8 text-white" />, title: 'Reports' },
-    { id: 'terminal', icon: <Terminal className="w-8 h-8 text-white" />, title: 'Terminal' }
+    { id: 'inventory', icon: <Database className="w-8 h-8 text-white" />, title: 'Inventory', component: <InventoryWindow onClose={() => {}} /> },
+    { id: 'billing', icon: <TrendingUp className="w-8 h-8 text-white" />, title: 'Billing', component: <BillingWindow onClose={() => {}} /> },
+    { id: 'reports', icon: <BarChart3 className="w-8 h-8 text-white" />, title: 'Reports', component: <ReportsWindow /> },
+    { id: 'patients', icon: <Users className="w-8 h-8 text-white" />, title: 'Patients', component: <PatientsWindow onClose={() => {}} /> },
+    { id: 'prescriptions', icon: <Pill className="w-8 h-8 text-white" />, title: 'Prescriptions', component: <PrescriptionsWindow /> },
+    { id: 'trash', icon: <Trash2 className="w-8 h-8 text-white" />, title: 'Recycle Bin', component: <RecycleBinWindow onItemRestore={handleItemRestore} onBulkRestore={handleBulkRestore} /> }
   ];
 
   // Sound effects
@@ -209,11 +128,11 @@ const Desktop: React.FC = () => {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const openWindow = (icon: DesktopIcon) => {
-    const existingWindow = windows.find(w => w.id === icon.id);
+  const openWindow = (app: any) => {
+    const existingWindow = windows.find(w => w.id === app.id);
     if (existingWindow) {
       setWindows(prev => prev.map(w => 
-        w.id === icon.id 
+        w.id === app.id 
           ? { ...w, isMinimized: false, zIndex: nextZIndex }
           : w
       ));
@@ -222,14 +141,14 @@ const Desktop: React.FC = () => {
     }
 
     const newWindow: Window = {
-      id: icon.id,
-      title: icon.title,
-      component: icon.windowComponent,
-      icon: icon.icon,
-      position: { x: 200 + windows.length * 30, y: 100 + windows.length * 30 },
-      size: { width: 900, height: 650 },
+      id: app.id,
+      title: app.title,
+      component: app.component,
+      icon: app.icon,
+      position: { x: 0, y: 28 },
+      size: { width: window.innerWidth, height: window.innerHeight - 88 },
       isMinimized: false,
-      isMaximized: false,
+      isMaximized: true,
       zIndex: nextZIndex
     };
 
@@ -272,7 +191,7 @@ const Desktop: React.FC = () => {
 
   return (
     <div 
-      className="h-screen w-screen overflow-hidden relative"
+      className="h-screen w-screen overflow-hidden relative desktop-container"
       style={{ background: wallpapers[wallpaperIndex], cursor: 'default' }}
     >
       {/* Professional Menu Bar */}
@@ -331,7 +250,7 @@ const Desktop: React.FC = () => {
           <p className="text-xs">Metformin 500mg: Only 5 units remaining</p>
         </motion.div>
 
-        {/* Prescription Alert Widget */}
+        {/* Payment Alert Widget */}
         <motion.div
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -340,9 +259,9 @@ const Desktop: React.FC = () => {
         >
           <div className="flex items-center space-x-2 mb-1">
             <Bell className="w-4 h-4" />
-            <span className="font-semibold text-sm">Prescription Ready</span>
+            <span className="font-semibold text-sm">Payment Received</span>
           </div>
-          <p className="text-xs">RX001 for Ram Sharma is ready for pickup</p>
+          <p className="text-xs">Invoice INV-001 payment confirmed - Rs. 621.50</p>
         </motion.div>
       </div>
 
@@ -373,19 +292,19 @@ const Desktop: React.FC = () => {
                 />
               </div>
               <div className="space-y-2">
-                {desktopIcons.map((icon) => (
+                {dockApps.map((app) => (
                   <button
-                    key={icon.id}
+                    key={app.id}
                     className="w-full flex items-center space-x-3 p-3 hover:bg-white/50 rounded-lg transition-colors text-left"
                     onClick={() => {
-                      openWindow(icon);
+                      openWindow(app);
                       setShowSpotlight(false);
                     }}
                   >
                     <div className="p-2 bg-teal-100 rounded-lg">
-                      {icon.icon}
+                      {app.icon}
                     </div>
-                    <span className="font-medium text-gray-800">{icon.title}</span>
+                    <span className="font-medium text-gray-800">{app.title}</span>
                   </button>
                 ))}
               </div>
@@ -393,27 +312,6 @@ const Desktop: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Professional Desktop Icons */}
-      {desktopIcons.map((icon) => (
-        <motion.div
-          key={icon.id}
-          className="absolute cursor-pointer select-none"
-          style={{ left: icon.position.x, top: icon.position.y }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onDoubleClick={() => openWindow(icon)}
-        >
-          <div className="flex flex-col items-center p-3 rounded-xl hover:bg-white/20 transition-all duration-200 backdrop-blur-sm">
-            <div className="mb-2 p-4 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 shadow-lg">
-              {icon.icon}
-            </div>
-            <span className="text-white text-sm font-medium text-center drop-shadow-lg">
-              {icon.title}
-            </span>
-          </div>
-        </motion.div>
-      ))}
 
       {/* Windows */}
       <AnimatePresence>
@@ -457,10 +355,7 @@ const Desktop: React.FC = () => {
                 whileHover={{ scale: dockHovered ? 1.3 : 1.1, y: -6 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => {
-                  const icon = desktopIcons.find(i => i.id === app.id);
-                  if (icon) {
-                    openWindow(icon);
-                  }
+                  openWindow(app);
                 }}
               >
                 <div className={`w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-200 border border-white/30 shadow-lg ${
