@@ -1,0 +1,342 @@
+/* Performance-Optimized Styles - Minimal Animations */
+
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Optimized widget styles with minimal animations */
+.widget-optimized {
+  will-change: transform;
+  transform: translateZ(0); /* Force hardware acceleration */
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Reduced animation dock */
+.dock-optimized {
+  transition: transform 0.2s ease-out;
+}
+
+.dock-optimized:hover {
+  transform: translateY(-2px); /* Reduced from -10px */
+}
+
+/* Minimal window animations */
+.window-optimized {
+  transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+}
+
+/* Fast fade transitions */
+.fade-fast {
+  transition: opacity 0.1s ease-out;
+}
+
+/* Optimized scrollbars */
+.scrollbar-optimized::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-optimized::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-optimized::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  transition: background 0.1s ease;
+}
+
+.scrollbar-optimized::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* GPU-accelerated transforms */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimized backdrop blur */
+.backdrop-blur-optimized {
+  backdrop-filter: blur(8px); /* Reduced from 20px */
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Minimal button hover effects */
+.button-optimized {
+  transition: background-color 0.1s ease, transform 0.1s ease;
+}
+
+.button-optimized:hover {
+  transform: translateY(-1px);
+}
+
+.button-optimized:active {
+  transform: translateY(0);
+}
+
+/* Fast loading spinner */
+.spinner-optimized {
+  animation: spin-fast 0.8s linear infinite;
+}
+
+@keyframes spin-fast {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Optimized focus states */
+.focus-optimized:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  transition: outline 0.1s ease;
+}
+
+/* Performance-optimized gradients */
+.gradient-optimized {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0c4a6e 100%);
+  background-attachment: fixed;
+}
+
+/* Minimal shadow effects */
+.shadow-optimized {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-optimized-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Optimized text rendering */
+.text-optimized {
+  text-rendering: optimizeSpeed;
+  font-smooth: never;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Fast transitions for interactive elements */
+.interactive-optimized {
+  transition: all 0.1s ease-out;
+}
+
+/* Reduced motion for background animations */
+.bg-animation-minimal {
+  animation: bg-shift 30s ease-in-out infinite;
+}
+
+@keyframes bg-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Optimized widget drag handles */
+.drag-handle-optimized {
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.drag-handle-optimized:active {
+  cursor: grabbing;
+}
+
+/* Performance-optimized modal overlays */
+.modal-overlay-optimized {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Fast notification animations */
+.notification-optimized {
+  animation: slide-in-fast 0.2s ease-out;
+}
+
+@keyframes slide-in-fast {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Optimized AI assistant styles */
+.ai-assistant-optimized {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.ai-eye-optimized {
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+/* Minimal particle effects */
+.particle-minimal {
+  opacity: 0.1;
+  animation: float-minimal 20s linear infinite;
+}
+
+@keyframes float-minimal {
+  from {
+    transform: translateY(100vh) translateX(0);
+  }
+  to {
+    transform: translateY(-100px) translateX(50px);
+  }
+}
+
+/* Optimized glass morphism */
+.glass-minimal {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Fast widget resize handles */
+.resize-handle-optimized {
+  transition: opacity 0.1s ease;
+  opacity: 0;
+}
+
+.resize-handle-optimized:hover,
+.widget-optimized:hover .resize-handle-optimized {
+  opacity: 1;
+}
+
+/* Performance-optimized table styles */
+.table-optimized {
+  contain: layout style paint;
+}
+
+.table-row-optimized {
+  transition: background-color 0.1s ease;
+}
+
+/* Minimal loading states */
+.loading-optimized {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Optimized form controls */
+.form-control-optimized {
+  transition: border-color 0.1s ease, box-shadow 0.1s ease;
+}
+
+.form-control-optimized:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Fast menu animations */
+.menu-optimized {
+  animation: menu-appear 0.15s ease-out;
+}
+
+@keyframes menu-appear {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Optimized tooltip styles */
+.tooltip-optimized {
+  animation: tooltip-appear 0.1s ease-out;
+}
+
+@keyframes tooltip-appear {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Performance hints for browsers */
+.performance-hint {
+  contain: layout style paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 300px;
+}
+
+/* Optimized chart containers */
+.chart-container-optimized {
+  contain: layout style paint;
+  will-change: contents;
+}
+
+/* Fast search results */
+.search-result-optimized {
+  transition: background-color 0.1s ease;
+}
+
+.search-result-optimized:hover {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+/* Minimal dashboard animations */
+.dashboard-optimized {
+  animation: dashboard-load 0.3s ease-out;
+}
+
+@keyframes dashboard-load {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optimized mobile styles */
+@media (max-width: 768px) {
+  .mobile-optimized {
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .mobile-optimized * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Battery saving mode */
+@media (prefers-reduced-motion: reduce) {
+  .battery-save * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

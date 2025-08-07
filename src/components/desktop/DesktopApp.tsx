@@ -4,9 +4,13 @@ import React, { useState, useEffect } from 'react';
 import BootScreen from './BootScreen';
 import Desktop from './Desktop';
 import '@/styles/macos.css';
+import '@/styles/performance-optimized.css';
 
 const DesktopApp: React.FC = () => {
-  const [isBooted, setIsBooted] = useState(false);
+  const [isBooted, setIsBooted] = useState(() => {
+    // Check if already booted in this session to prevent redundant boots
+    return sessionStorage.getItem('pharmacy_booted') === 'true';
+  });
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -21,6 +25,8 @@ const DesktopApp: React.FC = () => {
 
   const handleBootComplete = () => {
     setIsBooted(true);
+    // Mark as booted for this session to prevent redundant boots
+    sessionStorage.setItem('pharmacy_booted', 'true');
   };
 
   // Mobile fallback - show simplified version

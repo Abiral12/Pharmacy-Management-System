@@ -1,6 +1,7 @@
-/* Professional Font Stack - Futura and Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Futura:wght@300;400;500;600;700;800&display=swap');
+/* Professional Healthcare Font Stack - Inter and JetBrains Mono */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import '../styles/design-tokens.css';
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -122,31 +123,36 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Futura', 'Poppins', 'Futura PT', 'Century Gothic', 'Avenir', 'Helvetica Neue', sans-serif;
-    font-feature-settings: 'kern' 1, 'liga' 1;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'cv02' 1, 'cv03' 1, 'cv04' 1;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   
-  /* Headings use Poppins for a modern, friendly look */
+  /* Headings use Inter for professional healthcare look */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', 'Futura', 'Century Gothic', 'Avenir', 'Helvetica Neue', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-weight: 600;
     letter-spacing: -0.025em;
   }
   
-  /* Buttons and interactive elements use Futura for clean aesthetics */
+  /* Buttons and interactive elements use Inter for consistency */
   button, .btn, [role="button"] {
-    font-family: 'Futura', 'Poppins', 'Century Gothic', 'Avenir', 'Helvetica Neue', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-weight: 500;
-    letter-spacing: 0.025em;
+    letter-spacing: 0.01em;
   }
   
-  /* Navigation uses Poppins for brand consistency */
+  /* Navigation uses Inter for professional consistency */
   nav, .navbar, .nav-link {
-    font-family: 'Poppins', 'Futura', 'Century Gothic', 'Avenir', 'Helvetica Neue', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-weight: 500;
+  }
+  
+  /* Monospace elements use JetBrains Mono */
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', 'Source Code Pro', monospace;
   }
 }
 

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Monitor, Loader2, Activity, Shield, Database, Cloud, Zap, CheckCircle } from 'lucide-react';
+import { Monitor, Loader2, Activity, CheckCircle } from 'lucide-react';
 
 interface BootScreenProps {
   onBootComplete: () => void;
@@ -15,36 +15,32 @@ const BootScreen: React.FC<BootScreenProps> = ({ onBootComplete }) => {
   const [systemChecks, setSystemChecks] = useState<boolean[]>([]);
 
   const bootMessages = [
-    { text: 'Initializing PharmOS Core Systems...', icon: Monitor },
-    { text: 'Loading Pharmacy Management Modules...', icon: Activity },
-    { text: 'Establishing Secure Database Connection...', icon: Database },
-    { text: 'Connecting to Cloud Services...', icon: Cloud },
-    { text: 'Activating Security Protocols...', icon: Shield },
-    { text: 'Optimizing System Performance...', icon: Zap },
-    { text: 'PharmOS Ready - Welcome!', icon: CheckCircle }
+    { text: 'Initializing AI Systems...', icon: Monitor },
+    { text: 'Loading Core Modules...', icon: Activity },
+    { text: 'PharmOS Ready!', icon: CheckCircle }
   ];
 
   useEffect(() => {
     const bootSequence = async () => {
-      // Show custom PharmOS logo first
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Reduced logo display time for faster boot
+      await new Promise(resolve => setTimeout(resolve, 1000));
       setShowLogo(false);
       
-      // Then show PharmOS boot sequence with system checks
+      // Faster boot sequence with reduced delays
       for (let i = 0; i < bootMessages.length; i++) {
         setBootStage(i);
         setLoadingText(bootMessages[i].text);
         
-        // Simulate system check completion
-        await new Promise(resolve => setTimeout(resolve, 800));
+        // Reduced simulation time for faster boot
+        await new Promise(resolve => setTimeout(resolve, 300));
         setSystemChecks(prev => [...prev, true]);
-        await new Promise(resolve => setTimeout(resolve, 400));
+        await new Promise(resolve => setTimeout(resolve, 200));
       }
       
-      // Final delay before showing desktop
+      // Minimal delay before showing desktop
       setTimeout(() => {
         onBootComplete();
-      }, 1000);
+      }, 300);
     };
 
     bootSequence();
@@ -97,8 +93,39 @@ const BootScreen: React.FC<BootScreenProps> = ({ onBootComplete }) => {
               <h1 className="text-6xl font-bold bg-gradient-to-r from-teal-400 to-teal-600 bg-clip-text text-transparent mb-2">
                 PharmOS
               </h1>
-              <p className="text-xl text-gray-400 font-light">Advanced Pharmacy Management System</p>
+              <p className="text-xl text-gray-400 font-light">AI Powered Pharmacy Management System</p>
               <p className="text-sm text-gray-500 mt-2">Powering Healthcare Excellence</p>
+              
+              {/* AI Robot Greeting */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.5, duration: 0.8 }}
+                className="mt-6 flex items-center justify-center space-x-3"
+              >
+                <motion.div
+                  animate={{ 
+                    rotate: [0, 10, -10, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    duration: 2, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                  className="w-12 h-12 bg-gradient-to-br from-teal-400 to-blue-500 rounded-full flex items-center justify-center shadow-lg"
+                >
+                  <span className="text-2xl">🤖</span>
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 2, duration: 0.6 }}
+                  className="bg-white/10 backdrop-blur-sm rounded-2xl px-4 py-2 border border-white/20"
+                >
+                  <p className="text-white text-sm font-medium">Hi! I'm your AI assistant 👋</p>
+                </motion.div>
+              </motion.div>
             </motion.div>
 
             {/* Loading Indicator */}

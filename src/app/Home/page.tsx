@@ -57,25 +57,20 @@ const staggerContainer = {
 
 export default function HomePage() {
   const [showSignIn, setShowSignIn] = useState(false);
-  const [openFAQ, setOpenFAQ] = useState(null);
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const router = useRouter();
 
-  // Handle URL hash navigation on page load
   useEffect(() => {
     const handleHashNavigation = () => {
       const hash = window.location.hash.replace("#", "");
       if (hash) {
-        // Small delay to ensure page is fully loaded
         setTimeout(() => {
           scrollToElement(hash, { duration: 1000 });
         }, 100);
       }
     };
 
-    // Handle initial load
     handleHashNavigation();
-
-    // Handle hash changes (back/forward navigation)
     window.addEventListener("hashchange", handleHashNavigation);
 
     return () => {
@@ -86,7 +81,7 @@ export default function HomePage() {
   return (
     <>
       <PharmacyNavbar onSignInClick={() => setShowSignIn(true)} />
-      {/* Modal with backdrop blur */}
+      
       {showSignIn && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center">
           <div
@@ -108,62 +103,169 @@ export default function HomePage() {
 
       <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white">
         {/* Hero Section */}
-        <section className="relative h-screen w-full">
-          {/* Optimized background image */}
-          <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
+        <section className="relative min-h-screen overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            className="absolute inset-0"
+          >
             <Image
-              fill
               src="/images/pharmacy-dashboard-pro.jpg"
-              alt="Modern pharmacy management dashboard showing real-time inventory, prescription tracking, and analytics"
-              className="object-cover object-center"
+              alt="Modern pharmacy management dashboard"
+              fill
+              className="object-cover w-full h-full"
               loading="eager"
-              quality={85}
+              quality={90}
               priority
               placeholder="blur"
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
             />
-            <div className="absolute inset-0 bg-black/30"></div>
-          </div>
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 via-blue-800/40 to-teal-800/50"></div>
+            <div className="absolute inset-0 bg-black/20"></div>
+          </motion.div>
 
-          {/* Content container */}
-          <div className="relative z-10 h-full flex items-center justify-center">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-              <div className="flex flex-col items-center justify-center h-full w-full text-center">
-                <div className="space-y-8 text-white flex flex-col items-center justify-center">
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-white">
-                    Pharmacy Management System
-                  </h1>
+          <div className="relative z-20 flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+              className="text-center max-w-3xl mx-auto space-y-6"
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-white px-5 py-2.5 rounded-full text-sm font-semibold shadow-lg"
+              >
+                <BadgeCheck className="h-4 w-4 text-emerald-300" />
+                Enterprise-Grade Solution
+              </motion.div>
 
-                  <p className="text-xl text-white leading-relaxed font-light max-w-2xl">
-                    Streamline prescriptions, automate inventory, and enhance
-                    patient care with Nepal's most trusted pharmacy management
-                    platform. Reduce errors by 95% and save 3+ hours daily.
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+                className="space-y-4"
+              >
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
+                  <span className="block text-white drop-shadow-lg">Pharmacy</span>
+                  <span className="block text-white drop-shadow-lg">Management</span>
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-blue-300 to-emerald-300 drop-shadow-lg">
+                    System
+                  </span>
+                </h1>
+                
+                <div className="flex items-center justify-center space-x-3 text-teal-200">
+                  <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-teal-300 to-transparent"></div>
+                  <span className="text-sm font-medium uppercase tracking-widest">
+                    Professional Grade
+                  </span>
+                  <div className="w-12 h-0.5 bg-gradient-to-r from-transparent via-teal-300 to-transparent"></div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.6 }}
+                className="space-y-5"
+              >
+                <p className="text-base sm:text-lg text-white/90 leading-relaxed font-light max-w-2xl mx-auto drop-shadow-md">
+                  Streamline prescriptions, automate inventory, and enhance
+                  patient care with Nepal's most trusted pharmacy management
+                  platform.
+                </p>
+                
+                <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 max-w-lg mx-auto">
+                  <p className="text-sm text-white/80">
+                    <span className="text-emerald-300 font-semibold">95% error reduction</span>
+                    <span className="text-white/60 mx-2">•</span>
+                    <span className="text-blue-300 font-semibold">3+ hours saved daily</span>
                   </p>
+                </div>
+              </motion.div>
 
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-                    <button
-                      className="px-8 py-4 bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center"
-                      onClick={() => setShowSignIn(true)}
-                    >
-                      Sign In
-                      <ArrowRight className="ml-2 h-5 w-5" />
-                    </button>
-                    <button className="px-8 py-4 border-2 border-gray-200 hover:border-teal-300 text-white hover:text-teal-300 font-semibold rounded-xl transition-all duration-200 bg-white/10 hover:bg-white/20 flex items-center justify-center">
-                      <PlayCircle className="h-5 w-5 mr-2 text-teal-300" />
-                      Live Demo
-                    </button>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6"
+              >
+                <motion.button
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-gradient-to-r from-blue-800 to-blue-900 hover:from-blue-700 hover:to-blue-800 text-white font-semibold rounded-xl transition-all duration-300 flex items-center justify-center group focus:outline-none focus:ring-4 focus:ring-blue-500/30 text-base backdrop-blur-sm shadow-xl border border-blue-700/50"
+                  onClick={() => setShowSignIn(true)}
+                >
+                  Get Started Free
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+                
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 border-2 border-teal-400/50 hover:border-teal-300 text-white hover:text-teal-100 font-semibold rounded-xl transition-all duration-300 flex items-center justify-center group focus:outline-none focus:ring-4 focus:ring-teal-500/30 text-base backdrop-blur-sm hover:bg-teal-800/20"
+                >
+                  <PlayCircle className="h-5 w-5 mr-2 text-teal-300 group-hover:scale-110 transition-transform" />
+                  Watch Demo
+                </motion.button>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9, duration: 0.6 }}
+                className="pt-8"
+              >
+                <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-5 max-w-2xl mx-auto">
+                  <p className="text-sm text-white/80 mb-4 font-medium">Trusted by 500+ pharmacies across Nepal</p>
+                  <div className="flex items-center justify-center space-x-6 flex-wrap gap-4">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-8 h-8 bg-emerald-500/20 rounded-full flex items-center justify-center">
+                        <Check className="w-4 h-4 text-emerald-300" />
+                      </div>
+                      <span className="text-sm font-medium text-white/80">FDA Compliant</span>
+                    </div>
+                    
+                    <div className="flex items-center space-x-2">
+                      <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
+                        <BadgeCheck className="w-4 h-4 text-blue-300" />
+                      </div>
+                      <span className="text-sm font-medium text-white/80">ISO Certified</span>
+                    </div>
+                    
+                    <div className="flex items-center space-x-2">
+                      <div className="w-8 h-8 bg-teal-500/20 rounded-full flex items-center justify-center">
+                        <Cross className="w-4 h-4 text-teal-300" />
+                      </div>
+                      <span className="text-sm font-medium text-white/80">Medical Grade</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
+          >
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-white/10 backdrop-blur-md border border-white/20 text-white p-6 rounded-full shadow-2xl hover:bg-white/20 transition-colors duration-200 focus:outline-none focus:ring-4 focus:ring-blue-500/50 opacity-40 hover:opacity-100"
+              onClick={() => console.log("Demo clicked")}
+            >
+              <PlayCircle className="w-12 h-12 text-teal-300" />
+            </motion.button>
+          </motion.div>
         </section>
 
         {/* Features Section */}
-        <section
-          id="features"
-          className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-white"
-        >
+        <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-white">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -176,7 +278,6 @@ export default function HomePage() {
               </h2>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                 Comprehensive tools designed specifically for Nepali pharmacies.
-                Reduce manual work, prevent errors, and focus on patient care.
               </p>
             </motion.div>
 
@@ -218,8 +319,7 @@ export default function HomePage() {
                 Get Started in Minutes, Not Months
               </h2>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Our proven 4-step process gets your pharmacy running efficiently
-                in under 24 hours. No technical expertise required.
+                Our proven 4-step process gets your pharmacy running efficiently.
               </p>
             </motion.div>
 
@@ -245,7 +345,7 @@ export default function HomePage() {
           </motion.div>
         </section>
 
-        {/* System Features Section - Enhanced for Pharmacy Operations */}
+        {/* System Features Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-gradient-to-b from-white to-gray-50">
           <motion.div
             initial="hidden"
@@ -262,11 +362,7 @@ export default function HomePage() {
                 Complete Pharmacy Management
               </h2>
               <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                Streamline your pharmacy operations with our comprehensive
-                management system.
-                <span className="block mt-2 text-teal-600 font-medium">
-                  All features included with professional support and training.
-                </span>
+                Streamline your pharmacy operations with our comprehensive system.
               </p>
             </motion.div>
 
@@ -274,7 +370,6 @@ export default function HomePage() {
               variants={staggerContainer}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
-              {/* Prescription Management */}
               <motion.div variants={fadeIn}>
                 <Card className="h-full border border-gray-200 hover:border-teal-300 transition-all">
                   <CardHeader className="text-center">
@@ -302,16 +397,11 @@ export default function HomePage() {
                         <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
                         <span>Automated refill reminders</span>
                       </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Status tracking system</span>
-                      </li>
                     </ul>
                   </CardContent>
                 </Card>
               </motion.div>
 
-              {/* Patient Management */}
               <motion.div variants={fadeIn}>
                 <Card className="h-full border-2 border-teal-500 shadow-lg relative overflow-hidden">
                   <div className="absolute top-4 right-4 bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded-full">
@@ -338,20 +428,11 @@ export default function HomePage() {
                         <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
                         <span>Medical history tracking</span>
                       </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Allergy management</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Contact information system</span>
-                      </li>
                     </ul>
                   </CardContent>
                 </Card>
               </motion.div>
 
-              {/* Inventory Management */}
               <motion.div variants={fadeIn}>
                 <Card className="h-full border border-gray-200 hover:border-teal-300 transition-all">
                   <CardHeader className="text-center">
@@ -375,21 +456,12 @@ export default function HomePage() {
                         <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
                         <span>Low stock alerts</span>
                       </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Expiry date monitoring</span>
-                      </li>
-                      <li className="flex items-start">
-                        <Check className="h-4 w-4 text-teal-500 mt-0.5 mr-2 flex-shrink-0" />
-                        <span>Automated reorder points</span>
-                      </li>
                     </ul>
                   </CardContent>
                 </Card>
               </motion.div>
             </motion.div>
 
-            {/* Additional Features */}
             <motion.div
               variants={fadeIn}
               className="mt-12 bg-teal-50 rounded-lg p-6 text-center"
@@ -397,10 +469,6 @@ export default function HomePage() {
               <h3 className="text-xl font-bold text-slate-800 mb-2">
                 Plus Advanced Analytics & Reports
               </h3>
-              <p className="text-slate-600 mb-4 max-w-2xl mx-auto">
-                Comprehensive reporting suite with sales analytics, inventory
-                reports, and patient insights.
-              </p>
               <Button
                 className="bg-teal-600 text-white hover:bg-teal-700"
                 onClick={() => setShowSignIn(true)}
@@ -427,13 +495,13 @@ export default function HomePage() {
               variants={fadeIn}
               className="text-xl mb-8 max-w-2xl mx-auto"
             >
-              Join 500+ pharmacies across Nepal saving 3+ hours daily and
-              reducing errors by 95%. No setup fees, free training included.
+              Join pharmacies across Nepal saving hours daily and reducing errors.
             </motion.p>
             <motion.div variants={fadeIn}>
               <Button
                 size="lg"
                 className="bg-white text-teal-600 hover:bg-teal-50 px-8 py-4 text-lg font-semibold"
+                onClick={() => setShowSignIn(true)}
               >
                 Start Free 30-Day Trial <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -451,12 +519,8 @@ export default function HomePage() {
           >
             <motion.div variants={fadeIn} className="text-center mb-16">
               <h2 className="text-3xl font-bold text-slate-800 mb-4">
-                Trusted by 500+ Pharmacies Across Nepal
+                Trusted by Pharmacies Across Nepal
               </h2>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                See how our platform is transforming pharmacy operations
-                nationwide
-              </p>
             </motion.div>
 
             <motion.div
@@ -492,9 +556,6 @@ export default function HomePage() {
                           <p className="text-sm text-slate-500">
                             {testimonial.role}
                           </p>
-                          <p className="text-sm text-slate-500">
-                            {testimonial.pharmacy}
-                          </p>
                         </div>
                       </div>
                     </CardContent>
@@ -519,10 +580,6 @@ export default function HomePage() {
                   Frequently Asked Questions
                 </h2>
               </div>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Get answers to common questions about our pharmacy management
-                system
-              </p>
             </motion.div>
 
             <motion.div
@@ -584,9 +641,6 @@ export default function HomePage() {
             </motion.div>
 
             <motion.div variants={fadeIn} className="text-center mt-12">
-              <p className="text-slate-600 mb-4">
-                Still have questions? We're here to help!
-              </p>
               <Button
                 variant="outline"
                 className="border-teal-600 text-teal-600 hover:bg-teal-50"
@@ -597,9 +651,7 @@ export default function HomePage() {
           </motion.div>
         </section>
       </div>
-      <Suspense
-        fallback={<div className="h-96 bg-teal-800 animate-pulse"></div>}
-      >
+      <Suspense fallback={<div className="h-96 bg-teal-800 animate-pulse"></div>}>
         <Footer />
       </Suspense>
     </>
@@ -610,38 +662,32 @@ const features = [
   {
     icon: LayoutDashboard,
     title: "Real-Time Dashboard",
-    description:
-      "Monitor sales, inventory levels, and key metrics instantly. Make data-driven decisions with live insights.",
+    description: "Monitor sales, inventory levels, and key metrics instantly.",
   },
   {
     icon: ShoppingCart,
     title: "Smart Inventory Control",
-    description:
-      "Never run out of stock again. Automated reorder alerts and supplier management save time and money.",
+    description: "Never run out of stock with automated reorder alerts.",
   },
   {
     icon: FileText,
     title: "Digital Prescriptions",
-    description:
-      "Process prescriptions 3x faster with digital tracking, patient history, and automated refill reminders.",
+    description: "Process prescriptions 3x faster with digital tracking.",
   },
   {
     icon: Users,
     title: "Complete Patient Records",
-    description:
-      "Secure patient profiles with medication history, allergies, and insurance details in one place.",
+    description: "Secure patient profiles with medication history.",
   },
   {
     icon: Cross,
     title: "Safety First Alerts",
-    description:
-      "Prevent dangerous drug interactions with real-time alerts. Protect patients and reduce liability.",
+    description: "Prevent dangerous drug interactions with real-time alerts.",
   },
   {
     icon: BadgeCheck,
     title: "Regulatory Compliance",
-    description:
-      "Stay compliant with Nepal's pharmacy regulations. Automated reporting and audit trails included.",
+    description: "Stay compliant with Nepal's pharmacy regulations.",
   },
 ];
 
@@ -650,86 +696,64 @@ const testimonials = [
     name: "Dr. Rajesh Sharma",
     role: "Owner & Pharmacist",
     pharmacy: "Kathmandu Medical Pharmacy",
-    quote:
-      "This system transformed our operations completely. We've reduced prescription errors by 98% and our staff loves how intuitive it is. Best investment we've made.",
+    quote: "This system transformed our operations completely. We've reduced prescription errors by 98%.",
   },
   {
     name: "Sita Gurung",
     role: "Pharmacy Manager",
     pharmacy: "Pokhara Health Center",
-    quote:
-      "The inventory management is incredible. We never run out of essential medicines anymore, and the automated reordering saves us hours every week.",
+    quote: "The inventory management is incredible. We never run out of essential medicines anymore.",
   },
   {
     name: "Bikash Thapa",
     role: "Head Pharmacist",
     pharmacy: "Chitwan Community Pharmacy",
-    quote:
-      "Customer service is outstanding and the training was comprehensive. Our entire team was up and running in just one day. Highly recommended!",
+    quote: "Customer service is outstanding and the training was comprehensive.",
   },
 ];
 
 const steps = [
   {
     title: "Quick Setup & Account Creation",
-    description:
-      "Create your secure account in 2 minutes. Our team handles the technical setup while you focus on your pharmacy.",
+    description: "Create your secure account in 2 minutes.",
   },
   {
     title: "Import Your Existing Data",
-    description:
-      "Seamlessly migrate your current inventory, patient records, and supplier information. We support all major formats.",
+    description: "Seamlessly migrate your current inventory and patient records.",
   },
   {
     title: "Free Staff Training & Support",
-    description:
-      "Get your entire team up to speed with our comprehensive training program. Live support available during transition.",
+    description: "Get your entire team up to speed with our training program.",
   },
   {
     title: "Go Live & Start Saving",
-    description:
-      "Begin processing prescriptions faster, managing inventory smarter, and serving patients better from day one.",
+    description: "Begin processing prescriptions faster from day one.",
   },
 ];
+
 const faqs = [
   {
     question: "How long does it take to set up the system?",
-    answer:
-      "Our team can have your pharmacy management system up and running within 24 hours. This includes data migration, staff training, and full system configuration. Most pharmacies are processing prescriptions on day one.",
+    answer: "Our team can have your pharmacy management system up and running within 24 hours.",
   },
   {
     question: "Is my pharmacy data secure and backed up?",
-    answer:
-      "Absolutely. We use bank-level encryption and store all data in secure, HIPAA-compliant servers. Your data is automatically backed up multiple times daily, and we maintain 99.9% uptime with redundant systems.",
+    answer: "Absolutely. We use bank-level encryption and store all data in secure servers.",
   },
   {
     question: "Can I import my existing patient and inventory data?",
-    answer:
-      "Yes! We support data import from most pharmacy management systems, Excel files, and manual databases. Our team handles the entire migration process to ensure no data is lost during the transition.",
+    answer: "Yes! We support data import from most pharmacy management systems.",
   },
   {
     question: "What happens if I need help or have technical issues?",
-    answer:
-      "All plans include comprehensive support. Basic plan users get email support, Premium users get priority email support, and Elite users get 24/7 phone support. We also provide free training for your entire staff.",
+    answer: "All plans include comprehensive support with free training for your staff.",
   },
   {
     question: "Does the system work with Nepal's pharmacy regulations?",
-    answer:
-      "Yes, our system is specifically designed for Nepali pharmacies and fully complies with all local regulations. We automatically generate required reports and maintain audit trails for regulatory compliance.",
+    answer: "Yes, our system is specifically designed for Nepali pharmacies.",
   },
   {
     question: "Can I try the system before committing to a plan?",
-    answer:
-      "Absolutely! We offer a 30-day free trial with full access to all features. No credit card required, and our team will help you set up and test the system with your actual pharmacy data.",
-  },
-  {
-    question: "What if I want to cancel or change my plan?",
-    answer:
-      "You can upgrade, downgrade, or cancel your plan at any time. There are no long-term contracts or cancellation fees. If you cancel, you'll have access to export all your data.",
-  },
-  {
-    question: "Does the system work on mobile devices and tablets?",
-    answer:
-      "Yes! Our system is fully responsive and works perfectly on smartphones, tablets, and computers. You can manage your pharmacy from anywhere with an internet connection.",
+    answer: "Absolutely! We offer a 30-day free trial with full access to all features.",
   },
 ];
